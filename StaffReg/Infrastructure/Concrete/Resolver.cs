@@ -32,7 +32,7 @@ namespace StaffReg.Infrastructure.Concrete
             foreach (var parameterInfo in constructorInfo.GetParameters())
             {
                 var type = parameterInfo.ParameterType;
-                var obj = kernel.GetService(type);
+                var obj = type == typeof(IResolver) ? this : kernel.GetService(type);
                 activatorParams.Add(obj);
             }
 

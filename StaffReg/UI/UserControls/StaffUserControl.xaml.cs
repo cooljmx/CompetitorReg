@@ -10,16 +10,18 @@ namespace StaffReg.UI.UserControls
     {
         private readonly StaffListModel model;
         private readonly ISessionHelper sessionHelper;
+        private readonly IResolver resolver;
 
         public StaffListModel Model { get { return model; } }
 
         public string PanelTitle { get { return "Персонал"; } }
 
 
-        public StaffUserControl(ISessionHelper sessionHelper)
+        public StaffUserControl(ISessionHelper sessionHelper, IResolver resolver)
         {
             InitializeComponent();
             this.sessionHelper = sessionHelper;
+            this.resolver = resolver;
             model = new StaffListModel(sessionHelper);
             model.ReloadData();
         }
