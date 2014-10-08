@@ -1,4 +1,5 @@
-﻿using System.Reflection;
+﻿using System.Configuration;
+using System.Reflection;
 using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
 using NHibernate;
@@ -13,19 +14,13 @@ namespace StaffReg.Infrastructure.Concrete
         // TODO: Сделать SessionFactoryHelper синглтоном уровня приложения
         public SessionFactoryHelper()
         {
-            //var root = WebConfigurationManager.OpenWebConfiguration(HostingEnvironment.ApplicationVirtualPath);
-            var connectionString = "";//root.AppSettings.Settings["ConnectionString"];
-            
-            var cfg = MsSqlConfiguration.MsSql2012; //FirebirdConfiguration();
-
-            //log4net.Config.XmlConfigurator.Configure(); 
-            /*
+            var connectionString = ConfigurationManager.AppSettings["ConnectionString"];
+            var cfg = SQLiteConfiguration.Standard; 
             sessionFactory = Fluently.Configure()
                 .Database(cfg.ConnectionString(connectionString).ShowSql())
-                .Mappings(m => m.FluentMappings.AddFromAssembly(Assembly.Load("ExtReg.Entities")))
+                .Mappings(m => m.FluentMappings.AddFromAssembly(Assembly.Load("StaffReg.Entities")))
                 .Diagnostics(x => x.Enable())
                 .BuildSessionFactory();
-             * */
         }
 
         public ISessionFactory GetSessionFactory { get { return sessionFactory; } }

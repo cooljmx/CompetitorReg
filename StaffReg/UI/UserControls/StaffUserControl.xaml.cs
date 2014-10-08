@@ -1,11 +1,10 @@
-﻿using System.Windows.Controls;
-using Ninject;
+﻿using Ninject;
 using StaffReg.Infrastructure.Abstract;
-using StaffReg.Tools;
+using StaffReg.Infrastructure.Concrete;
 
 namespace StaffReg.UI.UserControls
 {
-    public partial class StaffUserControl : UserControl, IDocumentPanelManager
+    public partial class StaffUserControl : IDocumentPanelManager
     {
         public string PanelTitle { get { return "Персонал"; } }
 
