@@ -19,11 +19,13 @@ namespace StaffReg.Infrastructure.Concrete
             var cfg = MsSqlConfiguration.MsSql2012; //FirebirdConfiguration();
 
             //log4net.Config.XmlConfigurator.Configure(); 
+            /*
             sessionFactory = Fluently.Configure()
                 .Database(cfg.ConnectionString(connectionString).ShowSql())
                 .Mappings(m => m.FluentMappings.AddFromAssembly(Assembly.Load("ExtReg.Entities")))
                 .Diagnostics(x => x.Enable())
                 .BuildSessionFactory();
+             * */
         }
 
         public ISessionFactory GetSessionFactory { get { return sessionFactory; } }

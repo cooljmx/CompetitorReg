@@ -10,6 +10,8 @@ namespace StaffReg.Infrastructure.Concrete
         public Resolver()
         {
             kernel = new StandardKernel();
+
+            kernel.Bind<ISessionHelper>().To<SessionHelper>().WithConstructorArgument("sessionFactoryHelper", new SessionFactoryHelper());
         }
 
         public void Inject(object instance)

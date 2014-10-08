@@ -1,6 +1,6 @@
 ﻿namespace StaffReg.Infrastructure.Abstract
 {
-    interface IResolver
+    public interface IResolver
     {
         void Inject(object instance);
     }
