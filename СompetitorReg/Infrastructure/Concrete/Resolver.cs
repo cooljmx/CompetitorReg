@@ -21,11 +21,12 @@ namespace CompetitorReg.Infrastructure.Concrete
             kernel.Inject(instance);
         }
 
-        public object CreateInstance(Type controlType)
+        public T CreateInstance<T>()
         {
             var activatorParams = new List<object>();
+            var t = typeof(T);
 
-            var constructors = controlType.GetConstructors();
+            var constructors = t.GetConstructors();
             // берем первый конструктор
             var constructorInfo = constructors[0];
             foreach (var parameterInfo in constructorInfo.GetParameters())
@@ -35,7 +36,7 @@ namespace CompetitorReg.Infrastructure.Concrete
                 activatorParams.Add(obj);
             }
 
-            return Activator.CreateInstance(controlType,activatorParams.ToArray());
+            return (T)Activator.CreateInstance(t,activatorParams.ToArray());
         }
     }
 }

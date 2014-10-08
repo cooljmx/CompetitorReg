@@ -131,6 +131,7 @@
     <Compile Include="Infrastructure\Concrete\SessionFactoryHelper.cs" />
     <Compile Include="Infrastructure\Concrete\SessionHelper.cs" />
     <Compile Include="Infrastructure\Concrete\DocumentPanelManager.cs" />
+    <Compile Include="Infrastructure\Concrete\UIHelper.cs" />
     <Compile Include="Models\CompetitorListModel.cs" />
     <Compile Include="Models\СompetitorModel.cs" />
     <Compile Include="UI\UserControls\CompetitorUserControl.xaml.cs">

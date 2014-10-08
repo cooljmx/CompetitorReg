@@ -42,14 +42,17 @@ namespace CompetitorReg.Infrastructure.Concrete
                 {
                     // Не найден - создать
                     panel = manager.DockController.AddDocumentPanel(baseGroup);
-                    panel.Content = DependencyResolver.CreateInstance(controlType);//Activator.CreateInstance(controlType);
+
+                    #region generic
+                    var method = typeof (IResolver).GetMethod("CreateInstance");
+                    method = method.MakeGenericMethod(controlType);
+                    panel.Content = method.Invoke(DependencyResolver, new object[0]);
+                    //panel.Content = DependencyResolver.CreateInstance<controlType>();
+                    #endregion
                     var documentPanelControl = panel.Control as IDocumentPanelManager;
                     if (documentPanelControl != null)
                     {
                         panel.Caption = documentPanelControl.PanelTitle;
-                        /*documentPanelControl.DependencyResolver = DependencyResolver;
-                        if (DependencyResolver != null)
-                            DependencyResolver.Inject(panel.Control);   */ 
                     }
                 }
                 if (autoActivate)
@@ -71,6 +74,5 @@ namespace CompetitorReg.Infrastructure.Concrete
     interface IDocumentPanelManager
     {
         string PanelTitle { get; }
-        //IResolver DependencyResolver { get; set; }
     }
 }

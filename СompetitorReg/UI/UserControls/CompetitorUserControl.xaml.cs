@@ -1,7 +1,9 @@
 ﻿using System.Windows;
+using System.Windows.Input;
 using CompetitorReg.Infrastructure.Abstract;
 using CompetitorReg.Infrastructure.Concrete;
 using CompetitorReg.Models;
+using CompetitorReg.UI.Windows;
 using DevExpress.Xpf.Bars;
 
 namespace CompetitorReg.UI.UserControls
@@ -35,6 +37,13 @@ namespace CompetitorReg.UI.UserControls
         {
             //DependencyResolver.Inject(model);
             //Model.ReloadData();
+        }
+
+        private void Control_OnMouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if (!UiHelper.TestGridControlForRowCell(sender, e)) return;
+            var card = resolver.CreateInstance<CompetitorCard>();
+            card.ShowDialog();
         }
     }
 }
