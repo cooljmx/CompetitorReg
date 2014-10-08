@@ -16,7 +16,7 @@ namespace CompetitorReg.UI.UserControls
 
         public CompetitorListModel Model { get { return model; } }
 
-        public string PanelTitle { get { return "Персонал"; } }
+        public string PanelTitle { get { return "Соискатели"; } }
 
 
         public CompetitorUserControl(ISessionHelper sessionHelper, IResolver resolver)
@@ -27,23 +27,37 @@ namespace CompetitorReg.UI.UserControls
             model = new CompetitorListModel(sessionHelper);
             model.ReloadData();
         }
-
+        
         private void BarButtonAdd_OnItemClick(object sender, ItemClickEventArgs e)
         {
-            
+            var card = resolver.CreateInstance<CompetitorCard>();
+            card.ShowDialog();
+            if (card.Model.IsSaved)
+                Model.ReloadAfterAdd(card.Model.Data.IdСompetitor);}
+
+        private void BarButtonRemove_OnItemClick(object sender, ItemClickEventArgs e)
+        {
+            throw new System.NotImplementedException();
         }
 
-        private void StaffUserControl_OnLoaded(object sender, RoutedEventArgs e)
+        private void DoModify()
         {
-            //DependencyResolver.Inject(model);
-            //Model.ReloadData();
+            var card = resolver.CreateInstance<CompetitorCard>();
+            card.Model.LoadData(model.FocusedRow.IdСompetitor);
+            card.ShowDialog();
+            if (card.Model.IsSaved)
+                Model.ReloadFocusedRow();
+        }
+
+        private void BarButtonModify_OnItemClick(object sender, ItemClickEventArgs e)
+        {
+            DoModify();
         }
 
         private void Control_OnMouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             if (!UiHelper.TestGridControlForRowCell(sender, e)) return;
-            var card = resolver.CreateInstance<CompetitorCard>();
-            card.ShowDialog();
+            DoModify();
         }
     }
 }

@@ -3,7 +3,7 @@ using FluentNHibernate.Mapping;
 
 namespace CompetitorReg.Entities
 {
-    public class Сompetitor
+    public class Competitor
     {
         public virtual int IdСompetitor { get; set; }
         public virtual string Surname { get; set; }
@@ -13,12 +13,12 @@ namespace CompetitorReg.Entities
         public virtual DateTime BirthDate { get; set; }
     }
 
-    public class СompetitorMap : ClassMap<Сompetitor>
+    public class CompetitorMap : ClassMap<Competitor>
     {
-        public СompetitorMap()
+        public CompetitorMap()
         {
-            Table("Сompetitor");
-            Id(x => x.IdСompetitor).Column("IdСompetitor").GeneratedBy.TriggerIdentity();
+            Table("Competitor");
+            Id(x => x.IdСompetitor).Column("IdСompetitor").GeneratedBy.Identity();
             Map(x => x.Surname).Column("Surname");
             Map(x => x.Name).Column("Name");
             Map(x => x.MiddleName).Column("MiddleName");

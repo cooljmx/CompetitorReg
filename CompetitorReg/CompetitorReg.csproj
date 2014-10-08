@@ -123,7 +123,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Entities\Сompetitor.cs" />
+    <Compile Include="Entities\Competitor.cs" />
     <Compile Include="Infrastructure\Abstract\IResolver.cs" />
     <Compile Include="Infrastructure\Abstract\ISessionFactoryHelper.cs" />
     <Compile Include="Infrastructure\Abstract\ISessionHelper.cs" />
@@ -132,8 +132,10 @@
     <Compile Include="Infrastructure\Concrete\SessionHelper.cs" />
     <Compile Include="Infrastructure\Concrete\DocumentPanelManager.cs" />
     <Compile Include="Infrastructure\Concrete\UIHelper.cs" />
+    <Compile Include="Infrastructure\Concrete\VirtualNotifyPropertyChanged.cs" />
+    <Compile Include="Models\CompetitorCardModel.cs" />
     <Compile Include="Models\CompetitorListModel.cs" />
-    <Compile Include="Models\СompetitorModel.cs" />
+    <Compile Include="Models\CompetitorModel.cs" />
     <Compile Include="UI\UserControls\CompetitorUserControl.xaml.cs">
       <DependentUpon>CompetitorUserControl.xaml</DependentUpon>
     </Compile>
