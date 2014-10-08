@@ -88,6 +88,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Entities\Staff.cs" />
     <Compile Include="Infrastructure\Abstract\IResolver.cs" />
     <Compile Include="Infrastructure\Abstract\ISessionFactoryHelper.cs" />
     <Compile Include="Infrastructure\Abstract\ISessionHelper.cs" />
@@ -95,6 +96,8 @@
     <Compile Include="Infrastructure\Concrete\SessionFactoryHelper.cs" />
     <Compile Include="Infrastructure\Concrete\SessionHelper.cs" />
     <Compile Include="Infrastructure\Concrete\DocumentPanelManager.cs" />
+    <Compile Include="Models\StaffListModel.cs" />
+    <Compile Include="Models\StaffModel.cs" />
     <Compile Include="UI\UserControls\StaffUserControl.xaml.cs">
       <DependentUpon>StaffUserControl.xaml</DependentUpon>
     </Compile>
@@ -147,16 +150,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\StaffReg.Entities\StaffReg.Entities.csproj">
-      <Project>{9ef3c6d2-b990-4e43-be40-6a646aa2b3c3}</Project>
-      <Name>StaffReg.Entities</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\StaffReg.Models\StaffReg.Models.csproj">
-      <Project>{931a53fe-a8b7-4535-84c3-0de594dcfe1b}</Project>
-      <Name>StaffReg.Models</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Images\Create.png" />
     <Resource Include="Images\Delete.png" />
     <Resource Include="Images\document-excel.png" />
@@ -168,9 +161,7 @@
     <Resource Include="Images\Twitter.png" />
     <Resource Include="Images\Warning.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Tools\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\System.Data.SQLite.Core.1.0.94.0\build\net40\System.Data.SQLite.Core.targets" Condition="Exists('..\packages\System.Data.SQLite.Core.1.0.94.0\build\net40\System.Data.SQLite.Core.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

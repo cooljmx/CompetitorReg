@@ -18,7 +18,7 @@ namespace StaffReg.Infrastructure.Concrete
             var cfg = SQLiteConfiguration.Standard; 
             sessionFactory = Fluently.Configure()
                 .Database(cfg.ConnectionString(connectionString).ShowSql())
-                .Mappings(m => m.FluentMappings.AddFromAssembly(Assembly.Load("StaffReg.Entities")))
+                .Mappings(m => m.FluentMappings.AddFromAssembly(Assembly.GetExecutingAssembly()))
                 .Diagnostics(x => x.Enable())
                 .BuildSessionFactory();
         }
