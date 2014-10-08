@@ -10,6 +10,7 @@ namespace StaffReg
     {
         private void App_OnStartup(object sender, StartupEventArgs e)
         {
-            var resolver = new Resolver();}
+            var resolver = new Resolver();
+        }
     }
 }
