@@ -11,8 +11,8 @@
              xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
              x:Class="StaffReg.UI.UserControls.StaffUserControl" 
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
-    <Grid>
+             d:DesignHeight="300" d:DesignWidth="300" Loaded="StaffUserControl_OnLoaded">
+    <Grid DataContext="{Binding RelativeSource={RelativeSource AncestorType=UserControl}, Path=Model}">
         <dxb:BarManager >
             <dxb:BarManager.Resources>
                 <DataTemplate x:Key="BarButtonMenus">
@@ -33,7 +33,7 @@
                 </dxb:Bar>
             </dxb:BarManager.Bars>
             <Grid Background="Transparent">
-                <dxg:GridControl HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ItemsSource="{Binding Data}" SelectedItem="{Binding FocusedGridRow}">
+                <dxg:GridControl HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ItemsSource="{Binding Data}">
                     <dxg:GridControl.Columns>
                         <dxg:GridColumn Header="Фамилия" FieldName="Surname" FixedWidth="True" Width="130" FilterPopupMode="CheckedList"/>
                         <dxg:GridColumn Header="Имя" FieldName="Name" FixedWidth="True" Width="130" FilterPopupMode="CheckedList"/>

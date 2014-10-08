@@ -1,4 +1,7 @@
-﻿using Ninject;
+﻿using System;
+using System.Collections.Generic;
+using FluentNHibernate.Testing.Values;
+using Ninject;
 using StaffReg.Infrastructure.Abstract;
 
 namespace StaffReg.Infrastructure.Concrete
@@ -17,6 +20,23 @@ namespace StaffReg.Infrastructure.Concrete
         public void Inject(object instance)
         {
             kernel.Inject(instance);
+        }
+
+        public object CreateInstance(Type controlType)
+        {
+            var activatorParams = new List<object>();
+
+            var constructors = controlType.GetConstructors();
+            // берем первый конструктор
+            var constructorInfo = constructors[0];
+            foreach (var parameterInfo in constructorInfo.GetParameters())
+            {
+                var type = parameterInfo.ParameterType;
+                var obj = kernel.GetService(type);
+                activatorParams.Add(obj);
+            }
+
+            return Activator.CreateInstance(controlType,activatorParams.ToArray());
         }
     }
 }
