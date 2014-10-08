@@ -1,0 +1,61 @@
+﻿<UserControl
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars" 
+             xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
+             xmlns:themes="http://schemas.devexpress.com/winfx/2008/xaml/grid/themekeys"
+             xmlns:dxdove="http://schemas.devexpress.com/winfx/2008/xaml/docking/visualelements"
+             xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+             xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+             x:Class="CompetitorReg.UI.UserControls.CompetitorUserControl" 
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300" Loaded="StaffUserControl_OnLoaded">
+    <Grid DataContext="{Binding RelativeSource={RelativeSource AncestorType=UserControl}, Path=Model}">
+        <dxb:BarManager >
+            <dxb:BarManager.Resources>
+                <DataTemplate x:Key="BarButtonMenus">
+                    <Border Padding="3,0,8,0">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" Content="{Binding}"/>
+                    </Border>
+                </DataTemplate>
+            </dxb:BarManager.Resources>
+            <dxb:BarManager.Items>
+                <dxb:BarButtonItem x:Name="BarButtonAdd" Content="Добавить" ContentTemplate="{StaticResource BarButtonMenus}" ItemClick="BarButtonAdd_OnItemClick"/>
+                <dxb:BarButtonItem x:Name="BarButtonModify" Content="Редактировать" ContentTemplate="{StaticResource BarButtonMenus}" ItemClick="BarButtonAdd_OnItemClick"/>
+                <dxb:BarButtonItem x:Name="BarButtonRemove" Content="Удалить" ContentTemplate="{StaticResource BarButtonMenus}" ItemClick="BarButtonAdd_OnItemClick"/>
+            </dxb:BarManager.Items>
+            <dxb:BarManager.Bars>
+                <dxb:Bar x:Name="CrudBar">
+                    <dxb:Bar.DockInfo>
+                        <dxb:BarDockInfo ContainerType="Top"/>
+                    </dxb:Bar.DockInfo>
+                    <dxb:BarButtonItemLink BarItemName="BarButtonAdd"/>
+                    <dxb:BarButtonItemLink BarItemName="BarButtonModify"/>
+                    <dxb:BarButtonItemLink BarItemName="BarButtonRemove"/>
+                </dxb:Bar>
+            </dxb:BarManager.Bars>
+            <Grid Background="Transparent">
+                <dxg:GridControl HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ItemsSource="{Binding Data}">
+                    <dxg:GridControl.Columns>
+                        <dxg:GridColumn Header="Идентификатор" FieldName="IdCompetitor" FixedWidth="True" Width="130" FilterPopupMode="CheckedList" Visible="False"/>
+                        <dxg:GridColumn Header="Фамилия" FieldName="Surname" FixedWidth="True" Width="130" FilterPopupMode="CheckedList"/>
+                        <dxg:GridColumn Header="Имя" FieldName="Name" FixedWidth="True" Width="130" FilterPopupMode="CheckedList"/>
+                        <dxg:GridColumn Header="Отчество" FieldName="MiddleName" FixedWidth="True" Width="150" FilterPopupMode="CheckedList"/>
+                        <dxg:GridColumn Header="Телефон" FieldName="ContactPhone" FixedWidth="True" Width="150" FilterPopupMode="CheckedList"/>
+                        <dxg:GridColumn Header="Дата рождения" FieldName="BirthDate" FixedWidth="True" Width="150" FilterPopupMode="CheckedList"/>
+                    </dxg:GridControl.Columns>
+                    <dxg:GridControl.View>
+                        <dxg:TableView x:Name="MainGridView" ShowTotalSummary="True" NavigationStyle="Row" AutoWidth="True" AllowEditing="False" ShowGroupPanel="False">
+                            <dxg:TableView.Resources>
+                                <dx:ColorToBrushConverter x:Key="ColorToBrushConverter"/>
+                                <dxdove:NotNullConverter x:Key="NotNullConverter"/>
+                            </dxg:TableView.Resources>
+                        </dxg:TableView>
+                    </dxg:GridControl.View>
+                </dxg:GridControl>
+            </Grid>
+        </dxb:BarManager>
+    </Grid>
+</UserControl>
