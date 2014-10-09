@@ -16,10 +16,10 @@ namespace CompetitorReg.Infrastructure.Concrete
             kernel.Bind<ISessionHelper>().To<SessionHelper>().WithConstructorArgument("sessionFactoryHelper", new SessionFactoryHelper());
         }
 
-        public void Inject(object instance)
+        /*public void Inject(object instance)
         {
             kernel.Inject(instance);
-        }
+        }*/
 
         public T CreateInstance<T>()
         {

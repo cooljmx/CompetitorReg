@@ -24,10 +24,8 @@ namespace CompetitorReg.Infrastructure.Concrete
             {
                 // Тип реализует интерфейс
                 string controlId = controlType.FullName;
-                foreach (
-                    var baseLayoutItem in
-                        baseGroup.Items.Where(
-                            x => x is DocumentPanel && (x as DocumentPanel).Control is IDocumentPanelManager))
+                foreach (var baseLayoutItem in baseGroup.Items
+                    .Where(x => x is DocumentPanel && (x as DocumentPanel).Control is IDocumentPanelManager))
                 {
                     var localpanel = (DocumentPanel)baseLayoutItem;
                     var panelControlId = localpanel.Control.GetType().ToString();
