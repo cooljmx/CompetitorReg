@@ -124,7 +124,10 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Entities\Competitor.cs" />
+    <Compile Include="Entities\Interview.cs" />
+    <Compile Include="Entities\InterviewStatus.cs" />
     <Compile Include="Entities\Position.cs" />
+    <Compile Include="Entities\StatusR.cs" />
     <Compile Include="Infrastructure\Abstract\IResolver.cs" />
     <Compile Include="Infrastructure\Abstract\ISessionFactoryHelper.cs" />
     <Compile Include="Infrastructure\Abstract\ISessionHelper.cs" />
