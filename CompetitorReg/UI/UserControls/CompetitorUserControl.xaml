@@ -23,7 +23,7 @@
             <dxb:BarManager.Items>
                 <dxb:BarButtonItem x:Name="BarButtonAdd" Content="Добавить" ContentTemplate="{StaticResource BarButtonMenus}" ItemClick="BarButtonAdd_OnItemClick"/>
                 <dxb:BarButtonItem x:Name="BarButtonModify" Content="Редактировать" ContentTemplate="{StaticResource BarButtonMenus}" ItemClick="BarButtonModify_OnItemClick"/>
-                <dxb:BarButtonItem x:Name="BarButtonRemove" Content="Удалить" ContentTemplate="{StaticResource BarButtonMenus}" ItemClick="BarButtonRemove_OnItemClick"/>
+                <dxb:BarButtonItem x:Name="BarButtonRemove" Content="Удалить" ContentTemplate="{StaticResource BarButtonMenus}" ItemClick="BarButtonRemove_OnItemClick" IsEnabled="False"/>
                 <dxb:BarEditItem x:Name="BarSurnameEditItem" Content="Фамилия" EditWidth="100" EditValue="{Binding SurnameFilter}">
                     <dxb:BarEditItem.EditSettings>
                         <dxe:TextEditSettings/>

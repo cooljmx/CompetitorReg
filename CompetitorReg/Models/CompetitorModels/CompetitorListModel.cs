@@ -2,95 +2,85 @@
 using System.Linq;
 using CompetitorReg.Entities;
 using CompetitorReg.Infrastructure.Abstract;
-using CompetitorReg.Infrastructure.Concrete;
-using NHibernate.Linq;
 
-namespace CompetitorReg.Models
+namespace CompetitorReg.Models.CompetitorModels
 {
-    public class CompetitorListModel : VirtualNotifyPropertyChanged
+    public class CompetitorListModel : CommonListModel<CompetitorModel>
     {
-        private readonly ISessionHelper sessionHelper;
-        private readonly ObservableCollection<CompetitorModel> unfilteredData = new ObservableCollection<CompetitorModel>();
-        private readonly ObservableCollection<CompetitorModel> data = new ObservableCollection<CompetitorModel>();
-        private CompetitorModel focusedRow;
         private string surnameFilter;
-
-        public ObservableCollection<CompetitorModel> Data { get { return data; } }
-
-        public CompetitorModel FocusedRow { get { return focusedRow; } set { focusedRow = value; NotifyPropertyChanged("FocusedRow"); } }
+        protected readonly ObservableCollection<CompetitorModel> unfilteredData = new ObservableCollection<CompetitorModel>();
 
         public string SurnameFilter { get { return surnameFilter; } set { surnameFilter = value; NotifyPropertyChanged("SurnameFilter"); FilterData(); } }
 
-        public CompetitorListModel(ISessionHelper sessionHelper)
+        public CompetitorListModel(ISessionHelper sessionHelper) : base(sessionHelper)
         {
-            this.sessionHelper = sessionHelper;
         }
 
         private void FilterData()
         {
-            data.Clear();
+            Data.Clear();
             var tmp = unfilteredData
                 .Where(x => (surnameFilter == null) || (surnameFilter != null && x.Surname.ToUpper().Contains(surnameFilter.ToUpper())));
             foreach (var competitorModel in tmp)
             {
-                data.Add(competitorModel);
+                Data.Add(competitorModel);
             }
         }
 
-        public void ReloadData()
+        public override void ReloadData()
         {
             unfilteredData.Clear();
             using (var session = sessionHelper.NewSession())
             {
                 var query = session.QueryOver<Competitor>().List();
-                foreach (var сompetitor in query)
+                foreach (var competitor in query)
                 {
                     unfilteredData.Add(new CompetitorModel
                     {
-                        IdСompetitor = сompetitor.IdСompetitor,
-                        Surname = сompetitor.Surname,
-                        Name = сompetitor.Name,
-                        MiddleName = сompetitor.MiddleName,
-                        ContactPhone = сompetitor.ContactPhone,
-                        BirthDate = сompetitor.BirthDate
+                        Id = competitor.Id,
+                        Surname = competitor.Surname,
+                        Name = competitor.Name,
+                        MiddleName = competitor.MiddleName,
+                        ContactPhone = competitor.ContactPhone,
+                        BirthDate = competitor.BirthDate
                     });
                 }
             }
             FilterData();
         }
 
-        public void ReloadFocusedRow()
+        public override void ReloadFocusedRow()
         {
             if (FocusedRow == null) return;
             using (var session = sessionHelper.NewSession())
             {
-                var itemDb = session.Get<Competitor>(FocusedRow.IdСompetitor);
-                var itemGrid = unfilteredData.FirstOrDefault(x => x.IdСompetitor == FocusedRow.IdСompetitor);
+                var itemDb = session.Get<Competitor>(FocusedRow.Id);
+                var itemGrid = unfilteredData.FirstOrDefault(x => x.Id == FocusedRow.Id);
                 if (itemDb == null || itemGrid == null) return;
 
                 var index = unfilteredData.IndexOf(itemGrid);
                 unfilteredData[index] = new CompetitorModel
                 {
-                    IdСompetitor = itemDb.IdСompetitor,
+                    Id = itemDb.Id,
                     Surname = itemDb.Surname,
                     Name = itemDb.Name,
                     MiddleName = itemDb.MiddleName,
                     ContactPhone = itemDb.ContactPhone,
                     BirthDate = itemDb.BirthDate
                 };
-                FocusedRow = unfilteredData[index];
+                FilterData();
+                FocusedRow = unfilteredData[index]; // must be after filter
             }
-            FilterData();
         }
 
-        public void ReloadAfterAdd(int idCompetitor)
+        public override void ReloadAfterAdd(int id)
         {
             using (var session = sessionHelper.NewSession())
             {
-                var itemDb = session.Get<Competitor>(idCompetitor);
+                var itemDb = session.Get<Competitor>(id);
                 var itemGrid = new CompetitorModel
                 {
-                    IdСompetitor = itemDb.IdСompetitor,
+                    Id = itemDb.Id,
                     Surname = itemDb.Surname,
                     Name = itemDb.Name,
                     MiddleName = itemDb.MiddleName,
@@ -98,9 +88,9 @@ namespace CompetitorReg.Models
                     BirthDate = itemDb.BirthDate
                 };
                 unfilteredData.Add(itemGrid);
-                FocusedRow = itemGrid;
+                FilterData();
+                FocusedRow = itemGrid; // must be after filter
             }
-            FilterData();
         }
     }
 }

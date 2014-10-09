@@ -16,7 +16,9 @@
         </dxb:BarManager.Resources>
         <dxb:BarManager.Items>
             <dxb:BarButtonItem x:Name="BarButtonStaffList" Content="Соискатели" ContentTemplate="{StaticResource BarButtonMenus}" ItemClick="BarButtonStaffList_OnItemClick"/>
-            <dxb:BarSubItem x:Name="BarSubItemReferences" Content="Справочники" IsEnabled="False">
+            <dxb:BarButtonItem x:Name="BarButtonPositionList" Content="Должности" ContentTemplate="{StaticResource BarButtonMenus}" ItemClick="BarButtonPositionList_OnItemClick"/>
+            <dxb:BarSubItem x:Name="BarSubItemReferences" Content="Справочники">
+                <dxb:BarButtonItemLink BarItemName="BarButtonPositionList"/>
                 <!--<dxb:BarButtonItemLink BarItemName="barButtonItemWorkPlacesReference"/>
                 <dxb:BarButtonItemLink BarItemName="barButtonItemSpUsersReference"/>-->
             </dxb:BarSubItem>

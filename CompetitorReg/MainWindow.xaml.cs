@@ -23,5 +23,10 @@ namespace CompetitorReg
         {
             panelManager.SelectPanel(typeof (CompetitorUserControl), true);
         }
+
+        private void BarButtonPositionList_OnItemClick(object sender, ItemClickEventArgs e)
+        {
+            panelManager.SelectPanel(typeof (PositionUserControl), true);
+        }
     }
 }

@@ -124,6 +124,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Entities\Competitor.cs" />
+    <Compile Include="Entities\Position.cs" />
     <Compile Include="Infrastructure\Abstract\IResolver.cs" />
     <Compile Include="Infrastructure\Abstract\ISessionFactoryHelper.cs" />
     <Compile Include="Infrastructure\Abstract\ISessionHelper.cs" />
@@ -133,14 +134,25 @@
     <Compile Include="Infrastructure\Concrete\DocumentPanelManager.cs" />
     <Compile Include="Infrastructure\Concrete\UIHelper.cs" />
     <Compile Include="Infrastructure\Concrete\VirtualNotifyPropertyChanged.cs" />
-    <Compile Include="Models\CompetitorCardModel.cs" />
-    <Compile Include="Models\CompetitorListModel.cs" />
-    <Compile Include="Models\CompetitorModel.cs" />
+    <Compile Include="Models\CommonListModel.cs" />
+    <Compile Include="Models\CompetitorModels\CompetitorCardModel.cs" />
+    <Compile Include="Models\CompetitorModels\CompetitorListModel.cs" />
+    <Compile Include="Models\CompetitorModels\CompetitorModel.cs" />
+    <Compile Include="Models\CommonCardModel.cs" />
+    <Compile Include="Models\PositionModels\PositionCardModel.cs" />
+    <Compile Include="Models\PositionModels\PositionListModel.cs" />
+    <Compile Include="Models\PositionModels\PositionModel.cs" />
     <Compile Include="UI\UserControls\CompetitorUserControl.xaml.cs">
       <DependentUpon>CompetitorUserControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UI\UserControls\PositionUserControl.xaml.cs">
+      <DependentUpon>PositionUserControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UI\Windows\CompetitorCard.xaml.cs">
       <DependentUpon>CompetitorCard.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Windows\PositionCard.xaml.cs">
+      <DependentUpon>PositionCard.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -158,7 +170,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UI\UserControls\PositionUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UI\Windows\CompetitorCard.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Windows\PositionCard.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
