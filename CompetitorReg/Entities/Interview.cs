@@ -15,6 +15,7 @@ namespace CompetitorReg.Entities
         public virtual Competitor Competitor { get; set; }
         public virtual StatusR StatusR { get; set; }
         public virtual InterviewStatus InterviewStatus { get; set; }
+        public virtual InterviewSecurityStatus InterviewSecurityStatus { get; set; }
 
         public virtual IList<Position> PositionList { get; set; }
     }
@@ -32,6 +33,7 @@ namespace CompetitorReg.Entities
             References(x => x.Competitor).Column("IdCompetitor");
             References(x => x.StatusR).Column("IdStatusR");
             References(x => x.InterviewStatus).Column("IdInterviewStatus");
+            References(x => x.InterviewSecurityStatus).Column("IdInterviewSecurityStatus");
             HasManyToMany(x => x.PositionList)
                 .Table("RelInterviewPosition")
                 .ParentKeyColumn("IdInterview")

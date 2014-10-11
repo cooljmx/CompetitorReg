@@ -7,26 +7,24 @@ namespace CompetitorReg
 {
     public partial class MainWindow 
     {
-        private readonly IResolver resolver = new Resolver();
         private readonly DocumentPanelManager panelManager;
 
         public MainWindow()
         {
             InitializeComponent();
-            panelManager = new DocumentPanelManager(DockLayoutManager, DocumentContainer)
-            {
-                DependencyResolver = resolver
-            };
+
+            panelManager = new DocumentPanelManager(DockLayoutManager, DocumentContainer);
+            panelManager.DependencyResolver = new Resolver(panelManager);
         }
 
         private void BarButtonStaffList_OnItemClick(object sender, ItemClickEventArgs e)
         {
-            panelManager.SelectPanel(typeof (CompetitorUserControl), true);
+            panelManager.SelectPanel(typeof (CompetitorUserControl), null, null, true);
         }
 
         private void BarButtonPositionList_OnItemClick(object sender, ItemClickEventArgs e)
         {
-            panelManager.SelectPanel(typeof (PositionUserControl), true);
+            panelManager.SelectPanel(typeof (PositionUserControl), null, null, true);
         }
     }
 }

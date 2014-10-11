@@ -1,10 +1,8 @@
-﻿using System;
-
-namespace CompetitorReg.Infrastructure.Abstract
+﻿namespace CompetitorReg.Infrastructure.Abstract
 {
     public interface IResolver
     {
-        //void Inject(object instance);
+        T GetService<T>();
         T CreateInstance<T>();
     }
 }

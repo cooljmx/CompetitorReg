@@ -1,0 +1,54 @@
+﻿<UserControl x:Class="CompetitorReg.UI.UserControls.CompetitorInterviewListUserControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars"
+             xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="800">
+    <Grid DataContext="{Binding RelativeSource={RelativeSource AncestorType=UserControl}, Path=Model}">
+        <dxb:BarManager >
+            <dxb:BarManager.Resources>
+                <DataTemplate x:Key="BarButtonMenus">
+                    <Border Padding="3,0,8,0">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" Content="{Binding}"/>
+                    </Border>
+                </DataTemplate>
+            </dxb:BarManager.Resources>
+            <dxb:BarManager.Items>
+                <dxb:BarButtonItem x:Name="BarButtonAdd" Content="Добавить" ContentTemplate="{StaticResource BarButtonMenus}" ItemClick="BarButtonAdd_OnItemClickdd_OnItemClick"/>
+                <dxb:BarButtonItem x:Name="BarButtonModify" Content="Редактировать" ContentTemplate="{StaticResource BarButtonMenus}" ItemClick="BarButtonModify_OnItemClickButtonModify_OnItemClick"/>
+                <dxb:BarButtonItem x:Name="BarButtonRemove" Content="Удалить" ContentTemplate="{StaticResource BarButtonMenus}" ItemClick="BarButtonRemove_OnItemClicknRemove_OnItemClick" IsEnabled="False"/>
+            </dxb:BarManager.Items>
+            <dxb:BarManager.Bars>
+                <dxb:Bar x:Name="CrudBar" UseWholeRow="True" ShowDragWidget="False">
+                    <dxb:Bar.DockInfo>
+                        <dxb:BarDockInfo ContainerType="Top"/>
+                    </dxb:Bar.DockInfo>
+                    <dxb:BarButtonItemLink BarItemName="BarButtonAdd"/>
+                    <dxb:BarButtonItemLink BarItemName="BarButtonModify"/>
+                    <dxb:BarButtonItemLink BarItemName="BarButtonRemove"/>
+                </dxb:Bar>
+            </dxb:BarManager.Bars>
+            <Grid Background="Transparent">
+                <dxg:GridControl HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ItemsSource="{Binding Data}" MouseDoubleClick="Control_OnMouseDoubleClickMouseDoubleClick" SelectedItem="{Binding FocusedRow}">
+                    <dxg:GridControl.Columns>
+                        <dxg:GridColumn Header="Дата собеседования" FieldName="Date" FixedWidth="True" Width="150" FilterPopupMode="CheckedList" SortOrder="Ascending"/>
+                        <dxg:GridColumn Header="Статус R" FieldName="StatusR" FixedWidth="True" Width="130" FilterPopupMode="CheckedList"/>
+                        <dxg:GridColumn Header="Коментарий HR" FieldName="HrComment" FixedWidth="True" Width="130" FilterPopupMode="CheckedList"/>
+                        <dxg:GridColumn Header="Результаты тестирования" FieldName="TestResult" FixedWidth="True" Width="170" FilterPopupMode="CheckedList"/>
+                        <dxg:GridColumn Header="Статус собеседования" FieldName="InterviewStatus" FixedWidth="True" Width="170" FilterPopupMode="CheckedList"/>
+                        <dxg:GridColumn Header="Коментарий соискателя" FieldName="CompetitorComment" FixedWidth="True" Width="170" FilterPopupMode="CheckedList"/>
+                        <dxg:GridColumn Header="Статус СБ" FieldName="InterviewSecurityStatus" FixedWidth="True" Width="130" FilterPopupMode="CheckedList"/>
+                        <dxg:GridColumn Header="Претендуемые должности" FieldName="Positions" FixedWidth="True" Width="170" FilterPopupMode="CheckedList"/>
+                    </dxg:GridControl.Columns>
+                    <dxg:GridControl.View>
+                        <dxg:TableView x:Name="MainGridView" ShowTotalSummary="True" NavigationStyle="Row" AutoWidth="True" AllowEditing="False" ShowGroupPanel="False">
+                        </dxg:TableView>
+                    </dxg:GridControl.View>
+                </dxg:GridControl>
+            </Grid>
+        </dxb:BarManager>
+    </Grid>
+</UserControl>

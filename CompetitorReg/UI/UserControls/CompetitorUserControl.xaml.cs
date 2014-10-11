@@ -1,8 +1,6 @@
-﻿using System.Windows;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 using CompetitorReg.Infrastructure.Abstract;
 using CompetitorReg.Infrastructure.Concrete;
-using CompetitorReg.Models;
 using CompetitorReg.Models.CompetitorModels;
 using CompetitorReg.UI.Windows;
 using DevExpress.Xpf.Bars;
@@ -12,19 +10,20 @@ namespace CompetitorReg.UI.UserControls
     public partial class CompetitorUserControl : IDocumentPanelManager
     {
         private readonly CompetitorListModel model;
-        private readonly ISessionHelper sessionHelper;
         private readonly IResolver resolver;
+        private readonly DocumentPanelManager documentPanelManager;
 
         public CompetitorListModel Model { get { return model; } }
 
         public string PanelTitle { get { return "Соискатели"; } }
+        public int? PanelId { get; set; }
 
 
-        public CompetitorUserControl(ISessionHelper sessionHelper, IResolver resolver)
+        public CompetitorUserControl(ISessionHelper sessionHelper, IResolver resolver, DocumentPanelManager documentPanelManager)
         {
             InitializeComponent();
-            this.sessionHelper = sessionHelper;
             this.resolver = resolver;
+            this.documentPanelManager = documentPanelManager;
             model = new CompetitorListModel(sessionHelper);
             model.ReloadData();
         }
@@ -59,7 +58,7 @@ namespace CompetitorReg.UI.UserControls
         private void Control_OnMouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             if (!UiHelper.TestGridControlForRowCell(sender, e)) return;
-            DoModify();
+            documentPanelManager.SelectPanel(typeof(CompetitorInterviewListUserControl), Model.FocusedRow.Id, Model.FocusedRow.ShortName, true);
         }
     }
 }

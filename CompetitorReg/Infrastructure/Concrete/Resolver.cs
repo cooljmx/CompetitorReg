@@ -5,21 +5,22 @@ using Ninject;
 
 namespace CompetitorReg.Infrastructure.Concrete
 {
-    public class Resolver : IResolver
+    internal class Resolver : IResolver
     {
         private readonly IKernel kernel;
 
-        public Resolver()
+        public Resolver(DocumentPanelManager documentPanelManager)
         {
             kernel = new StandardKernel();
 
             kernel.Bind<ISessionHelper>().To<SessionHelper>().WithConstructorArgument("sessionFactoryHelper", new SessionFactoryHelper());
+            kernel.Bind<DocumentPanelManager>().ToConstant(documentPanelManager);
         }
 
-        /*public void Inject(object instance)
+        public T GetService<T>()
         {
-            kernel.Inject(instance);
-        }*/
+            return kernel.Get<T>();
+        }
 
         public T CreateInstance<T>()
         {

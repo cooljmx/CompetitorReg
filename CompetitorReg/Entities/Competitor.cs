@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using FluentNHibernate.Mapping;
 
 namespace CompetitorReg.Entities
@@ -26,5 +27,4 @@ namespace CompetitorReg.Entities
             Map(x => x.BirthDate).Column("BirthDate");
         }
     }
-
 }

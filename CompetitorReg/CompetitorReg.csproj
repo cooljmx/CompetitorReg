@@ -125,6 +125,7 @@
     </ApplicationDefinition>
     <Compile Include="Entities\Competitor.cs" />
     <Compile Include="Entities\Interview.cs" />
+    <Compile Include="Entities\InterviewSecurityStatus.cs" />
     <Compile Include="Entities\InterviewStatus.cs" />
     <Compile Include="Entities\Position.cs" />
     <Compile Include="Entities\StatusR.cs" />
@@ -142,9 +143,14 @@
     <Compile Include="Models\CompetitorModels\CompetitorListModel.cs" />
     <Compile Include="Models\CompetitorModels\CompetitorModel.cs" />
     <Compile Include="Models\CommonCardModel.cs" />
+    <Compile Include="Models\InterviewModels\CompetitorInterviewListModel.cs" />
+    <Compile Include="Models\InterviewModels\InterviewModel.cs" />
     <Compile Include="Models\PositionModels\PositionCardModel.cs" />
     <Compile Include="Models\PositionModels\PositionListModel.cs" />
     <Compile Include="Models\PositionModels\PositionModel.cs" />
+    <Compile Include="UI\UserControls\CompetitorInterviewListUserControl.xaml.cs">
+      <DependentUpon>CompetitorInterviewListUserControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UI\UserControls\CompetitorUserControl.xaml.cs">
       <DependentUpon>CompetitorUserControl.xaml</DependentUpon>
     </Compile>
@@ -169,6 +175,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="UI\UserControls\CompetitorInterviewListUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UI\UserControls\CompetitorUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

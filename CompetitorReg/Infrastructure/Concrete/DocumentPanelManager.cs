@@ -5,7 +5,7 @@ using DevExpress.Xpf.Docking;
 
 namespace CompetitorReg.Infrastructure.Concrete
 {
-    class DocumentPanelManager
+    public class DocumentPanelManager
     {
         private readonly DockLayoutManager manager;
         private readonly DocumentGroup baseGroup;
@@ -17,18 +17,17 @@ namespace CompetitorReg.Infrastructure.Concrete
             baseGroup = aBaseGroup;
         }
 
-        public DocumentPanel SelectPanel(Type controlType, bool autoActivate = false)
+        public DocumentPanel SelectPanel(Type controlType, int? panelId = null, string panelTitle = null, bool autoActivate = false)
         {
             DocumentPanel panel = null;
             if (controlType.GetInterfaces().Contains(typeof(IDocumentPanelManager)))
             {
                 // Тип реализует интерфейс
-                string controlId = controlType.FullName;
-                foreach (var baseLayoutItem in baseGroup.Items
-                    .Where(x => x is DocumentPanel && (x as DocumentPanel).Control is IDocumentPanelManager))
+                var controlId = panelId==null ? controlType.FullName : controlType.FullName + panelId;
+                foreach (var baseLayoutItem in baseGroup.Items.Where(x => x is DocumentPanel && (x as DocumentPanel).Control is IDocumentPanelManager))
                 {
                     var localpanel = (DocumentPanel)baseLayoutItem;
-                    var panelControlId = localpanel.Control.GetType().ToString();
+                    var panelControlId = localpanel.Control.GetType().FullName + ((IDocumentPanelManager)localpanel.Control).PanelId;
                     if (panelControlId == controlId)
                     {
                         panel = localpanel;
@@ -45,12 +44,12 @@ namespace CompetitorReg.Infrastructure.Concrete
                     var method = typeof (IResolver).GetMethod("CreateInstance");
                     method = method.MakeGenericMethod(controlType);
                     panel.Content = method.Invoke(DependencyResolver, new object[0]);
-                    //panel.Content = DependencyResolver.CreateInstance<controlType>();
                     #endregion
                     var documentPanelControl = panel.Control as IDocumentPanelManager;
                     if (documentPanelControl != null)
                     {
-                        panel.Caption = documentPanelControl.PanelTitle;
+                        documentPanelControl.PanelId = panelId;
+                        panel.Caption = panelTitle ?? documentPanelControl.PanelTitle;
                     }
                 }
                 if (autoActivate)
@@ -72,5 +71,6 @@ namespace CompetitorReg.Infrastructure.Concrete
     interface IDocumentPanelManager
     {
         string PanelTitle { get; }
+        int? PanelId { get; set; }
     }
 }

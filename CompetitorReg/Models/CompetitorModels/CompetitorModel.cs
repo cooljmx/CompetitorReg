@@ -18,5 +18,11 @@ namespace CompetitorReg.Models.CompetitorModels
         public string MiddleName { get { return middleName; } set { middleName = value; NotifyPropertyChanged("MiddleName"); } }
         public string ContactPhone { get { return contactPhone; } set { contactPhone = value; NotifyPropertyChanged("ContactPhone"); } }
         public DateTime BirthDate { get { return birthDate; } set { birthDate = value; NotifyPropertyChanged("BirthDate"); } }
+        public string ShortName { get
+        {
+            return middleName == null
+                ? string.Format("{0} {1}.", surname, name.Substring(0, 1))
+                : string.Format("{0} {1}.{2}.", surname, name.Substring(0, 1), middleName.Substring(0, 1));
+        } }
     }
 }

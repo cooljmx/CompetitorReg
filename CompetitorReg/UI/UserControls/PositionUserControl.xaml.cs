@@ -2,7 +2,6 @@
 using System.Windows.Input;
 using CompetitorReg.Infrastructure.Abstract;
 using CompetitorReg.Infrastructure.Concrete;
-using CompetitorReg.Models;
 using CompetitorReg.Models.PositionModels;
 using CompetitorReg.UI.Windows;
 using DevExpress.Xpf.Bars;
@@ -11,17 +10,16 @@ namespace CompetitorReg.UI.UserControls
 {
     public partial class PositionUserControl : IDocumentPanelManager
     {
-        private readonly ISessionHelper sessionHelper;
         private readonly IResolver resolver;
         private readonly PositionListModel model;
 
         public string PanelTitle { get { return "Должности"; } }
+        public int? PanelId { get; set; }
         public PositionListModel Model { get { return model; } }
 
         public PositionUserControl(ISessionHelper sessionHelper, IResolver resolver)
         {
             InitializeComponent();
-            this.sessionHelper = sessionHelper;
             this.resolver = resolver;
             model = new PositionListModel(sessionHelper);
             model.ReloadData();
