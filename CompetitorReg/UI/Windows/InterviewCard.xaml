@@ -1,0 +1,43 @@
+﻿<dx:DXWindow x:Class="CompetitorReg.UI.Windows.InterviewCard"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+        xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
+        xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+        Title="InterviewCard" Height="300" Width="800" WindowStartupLocation="CenterScreen">
+    <Grid DataContext="{Binding RelativeSource={RelativeSource AncestorType=dx:DXWindow}, Path=Model}">
+        <dxlc:LayoutControl Orientation="Vertical">
+            <dxlc:LayoutGroup VerticalAlignment="Top">
+                <dxlc:LayoutItem>
+                    <dxe:ComboBoxEdit ItemsSource="{Binding Data.StatusRList}" SelectedItem="{Binding Data.StatusR}" DisplayMember="Name"/>
+                </dxlc:LayoutItem>
+            </dxlc:LayoutGroup>
+            <dxlc:LayoutGroup VerticalAlignment="Stretch" Orientation="Horizontal">
+                <dxlc:LayoutItem VerticalAlignment="Stretch" Label="Доступные должности" LabelPosition="Top">
+                    <dxe:ListBoxEdit ItemsSource="{Binding Data.ExistsPositionList}" DisplayMember="Name" SelectedItem="{Binding Data.SelectedExistsPosition}"/>
+                </dxlc:LayoutItem>
+                <dxlc:LayoutGroup VerticalAlignment="Center" Width="50">
+                    <dxlc:LayoutItem>
+                        <Button Width="22" Height="22" Content="&lt;" Name="RemovePositionButton" Click="RemovePositionButton_OnClick"/>
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem>
+                        <Button Width="22" Height="22" Content="&gt;" Name="AddPositionButton" Click="AddPositionButton_OnClick"/>
+                    </dxlc:LayoutItem>
+                </dxlc:LayoutGroup>
+                <dxlc:LayoutItem VerticalAlignment="Stretch" Label="Претендуемые должности" LabelPosition="Top" DataContext="{Binding RelativeSource={RelativeSource AncestorType=dx:DXWindow}, Path=Model.Data, Mode=TwoWay}">
+                    <dxe:ListBoxEdit ItemsSource="{Binding PositionList}" DisplayMember="Name" SelectedItem="{Binding SelectedPosition}"/>
+                </dxlc:LayoutItem>
+            </dxlc:LayoutGroup>
+            <dxlc:LayoutGroup VerticalAlignment="Bottom">
+                <dxlc:LayoutGroup VerticalAlignment="Bottom">
+                    <dxlc:LayoutItem HorizontalAlignment="Right">
+                        <Button Content="Сохранить" Width="90" IsDefault="True" Name="SaveButton" Click="SaveButton_OnClick"></Button>
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem HorizontalAlignment="Right">
+                        <Button Content="Отмена" Width="90" IsCancel="True" Name="CancelButton" Click="CancelButton_OnClick"></Button>
+                    </dxlc:LayoutItem>
+                </dxlc:LayoutGroup>
+            </dxlc:LayoutGroup>
+        </dxlc:LayoutControl>
+    </Grid>
+</dx:DXWindow>

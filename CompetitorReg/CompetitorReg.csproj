@@ -144,7 +144,9 @@
     <Compile Include="Models\CompetitorModels\CompetitorModel.cs" />
     <Compile Include="Models\CommonCardModel.cs" />
     <Compile Include="Models\InterviewModels\CompetitorInterviewListModel.cs" />
-    <Compile Include="Models\InterviewModels\InterviewModel.cs" />
+    <Compile Include="Models\InterviewModels\InterviewCardItemModel.cs" />
+    <Compile Include="Models\InterviewModels\InterviewCardModel.cs" />
+    <Compile Include="Models\InterviewModels\InterviewListItemModel.cs" />
     <Compile Include="Models\PositionModels\PositionCardModel.cs" />
     <Compile Include="Models\PositionModels\PositionListModel.cs" />
     <Compile Include="Models\PositionModels\PositionModel.cs" />
@@ -159,6 +161,9 @@
     </Compile>
     <Compile Include="UI\Windows\CompetitorCard.xaml.cs">
       <DependentUpon>CompetitorCard.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Windows\InterviewCard.xaml.cs">
+      <DependentUpon>InterviewCard.xaml</DependentUpon>
     </Compile>
     <Compile Include="UI\Windows\PositionCard.xaml.cs">
       <DependentUpon>PositionCard.xaml</DependentUpon>
@@ -188,6 +193,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UI\Windows\CompetitorCard.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Windows\InterviewCard.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

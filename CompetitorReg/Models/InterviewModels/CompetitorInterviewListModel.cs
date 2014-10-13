@@ -4,7 +4,7 @@ using CompetitorReg.Infrastructure.Abstract;
 
 namespace CompetitorReg.Models.InterviewModels
 {
-    public class CompetitorInterviewListModel : CommonListModel<InterviewModel>
+    public class CompetitorInterviewListModel : CommonListModel<InterviewListItemModel>
     {
         private int competitorId;
 
@@ -26,7 +26,7 @@ namespace CompetitorReg.Models.InterviewModels
                 var query = session.QueryOver<Interview>().Where(x => x.Competitor.Id == competitorId).List();
                 foreach (var interview in query)
                 {
-                    Data.Add(new InterviewModel
+                    Data.Add(new InterviewListItemModel
                     {
                         Id = interview.Id,
                         IdCompetitor = competitorId,
