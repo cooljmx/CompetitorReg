@@ -30,15 +30,14 @@ namespace CompetitorReg.Models.InterviewModels
                     {
                         Id = interview.Id,
                         IdCompetitor = competitorId,
-                        //CompetitorName = string.Format("{0} {1} {2}", interview.Competitor.Surname, interview.Competitor.Name, interview.Competitor.MiddleName),
-                        StatusR = interview.StatusR.Name,
+                        StatusR = interview.StatusR == null ? null : interview.StatusR.Name,
                         HrComment = interview.HrComment,
                         Date = interview.Date,
                         TestResult = interview.TestResult,
-                        InterviewStatus = interview.InterviewStatus.Name,
-                        InterviewSecurityStatus = interview.InterviewSecurityStatus.Name,
+                        InterviewStatus = interview.InterviewStatus == null ? null : interview.InterviewStatus.Name,
+                        InterviewSecurityStatus = interview.InterviewSecurityStatus == null ? null : interview.InterviewSecurityStatus.Name,
                         CompetitorComment = interview.CompetitorComment,
-                        Positions = interview.PositionList.Select(x => x.Name).Aggregate((a, b) => a + "," + b)
+                        Positions = interview.PositionList.Count == 0 ? string.Empty : interview.PositionList.Select(x => x.Name) .OrderBy(x => x) .Aggregate((a, b) => a + "," + b) 
                     });
                 }
             }
@@ -46,10 +45,52 @@ namespace CompetitorReg.Models.InterviewModels
 
         public override void ReloadFocusedRow()
         {
+            if (FocusedRow == null) return;
+            using (var session = sessionHelper.NewSession())
+            {
+                var itemDb = session.Get<Interview>(FocusedRow.Id);
+                var itemGrid = Data.FirstOrDefault(x => x.Id == FocusedRow.Id);
+                if (itemDb == null || itemGrid == null) return;
+
+                var index = Data.IndexOf(itemGrid);
+                Data[index] = new InterviewListItemModel
+                {
+                    Id = itemDb.Id,
+                    IdCompetitor = competitorId,
+                    StatusR = itemDb.StatusR == null ? null : itemDb.StatusR.Name,
+                    HrComment = itemDb.HrComment,
+                    Date = itemDb.Date,
+                    TestResult = itemDb.TestResult,
+                    InterviewStatus = itemDb.InterviewStatus == null ? null : itemDb.InterviewStatus.Name,
+                    InterviewSecurityStatus = itemDb.InterviewSecurityStatus == null ? null : itemDb.InterviewSecurityStatus.Name,
+                    CompetitorComment = itemDb.CompetitorComment,
+                    Positions = itemDb.PositionList.Count == 0 ? string.Empty : itemDb.PositionList.Select(x => x.Name).OrderBy(x => x).Aggregate((a, b) => a + "," + b)
+                };
+                FocusedRow = Data[index];
+            }
         }
 
         public override void ReloadAfterAdd(int id)
         {
+            using (var session = sessionHelper.NewSession())
+            {
+                var itemDb = session.Get<Interview>(id);
+                var itemGrid = new InterviewListItemModel
+                {
+                    Id = itemDb.Id,
+                    IdCompetitor = competitorId,
+                    StatusR = itemDb.StatusR == null ? null : itemDb.StatusR.Name,
+                    HrComment = itemDb.HrComment,
+                    Date = itemDb.Date,
+                    TestResult = itemDb.TestResult,
+                    InterviewStatus = itemDb.InterviewStatus == null ? null : itemDb.InterviewStatus.Name,
+                    InterviewSecurityStatus = itemDb.InterviewSecurityStatus == null ? null : itemDb.InterviewSecurityStatus.Name,
+                    CompetitorComment = itemDb.CompetitorComment,
+                    Positions = itemDb.PositionList.Count == 0 ? string.Empty : itemDb.PositionList.Select(x => x.Name).OrderBy(x => x).Aggregate((a, b) => a + "," + b)
+                };
+                Data.Add(itemGrid);
+                FocusedRow = itemGrid;
+            }
         }
     }
 }

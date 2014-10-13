@@ -132,6 +132,7 @@
     <Compile Include="Infrastructure\Abstract\IResolver.cs" />
     <Compile Include="Infrastructure\Abstract\ISessionFactoryHelper.cs" />
     <Compile Include="Infrastructure\Abstract\ISessionHelper.cs" />
+    <Compile Include="Infrastructure\Concrete\Converters\NotNullConverter.cs" />
     <Compile Include="Infrastructure\Concrete\Resolver.cs" />
     <Compile Include="Infrastructure\Concrete\SessionFactoryHelper.cs" />
     <Compile Include="Infrastructure\Concrete\SessionHelper.cs" />

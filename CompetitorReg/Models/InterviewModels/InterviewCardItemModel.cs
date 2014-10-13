@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Windows;
 using CompetitorReg.Entities;
 using CompetitorReg.Infrastructure.Concrete;
 
@@ -22,24 +21,13 @@ namespace CompetitorReg.Models.InterviewModels
         private Position selectedPosition;
         private Position selectedExistsPosition;
         private readonly ObservableCollection<Position> positionList = new ObservableCollection<Position>();
+        private readonly ObservableCollection<Position> existsPositionList = new ObservableCollection<Position>();
 
         public int Id { get { return id; } set { id = value; NotifyPropertyChanged("Id"); } }
         public StatusR StatusR { get { return statusR; } set { statusR = value; NotifyPropertyChanged("StatusR"); } }
         public IList<StatusR> StatusRList { get; set; }
 
-        public Competitor Competitor
-        {
-            get
-            {
-                return competitor;
-            }
-            set
-            {
-                competitor = value;
-                NotifyPropertyChanged("Competitor");
-                NotifyPropertyChanged("CompetitorName");
-            }
-        }
+        public Competitor Competitor { get { return competitor; } set { competitor = value; NotifyPropertyChanged("Competitor"); NotifyPropertyChanged("CompetitorName"); } }
 
         public string CompetitorName
         {
@@ -62,6 +50,6 @@ namespace CompetitorReg.Models.InterviewModels
         public Position SelectedPosition { get { return selectedPosition; } set { selectedPosition = value; NotifyPropertyChanged("SelectedPosition"); } }
         public Position SelectedExistsPosition { get { return selectedExistsPosition; } set { selectedExistsPosition = value; NotifyPropertyChanged("SelectedExistsPosition"); } }
         public ObservableCollection<Position> PositionList { get { return positionList; } }
-        public IList<Position> ExistsPositionList { get; set; }
+        public ObservableCollection<Position> ExistsPositionList { get { return existsPositionList; } }
     }
 }

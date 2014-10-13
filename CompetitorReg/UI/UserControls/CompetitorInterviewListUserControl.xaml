@@ -6,7 +6,7 @@
              xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars"
              xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="800">
+             d:DesignHeight="300" d:DesignWidth="1280">
     <Grid DataContext="{Binding RelativeSource={RelativeSource AncestorType=UserControl}, Path=Model}">
         <dxb:BarManager >
             <dxb:BarManager.Resources>
@@ -17,9 +17,9 @@
                 </DataTemplate>
             </dxb:BarManager.Resources>
             <dxb:BarManager.Items>
-                <dxb:BarButtonItem x:Name="BarButtonAdd" Content="Добавить" ContentTemplate="{StaticResource BarButtonMenus}" ItemClick="BarButtonAdd_OnItemClickdd_OnItemClick"/>
-                <dxb:BarButtonItem x:Name="BarButtonModify" Content="Редактировать" ContentTemplate="{StaticResource BarButtonMenus}" ItemClick="BarButtonModify_OnItemClickButtonModify_OnItemClick"/>
-                <dxb:BarButtonItem x:Name="BarButtonRemove" Content="Удалить" ContentTemplate="{StaticResource BarButtonMenus}" ItemClick="BarButtonRemove_OnItemClicknRemove_OnItemClick" IsEnabled="False"/>
+                <dxb:BarButtonItem x:Name="BarButtonAdd" Content="Добавить" ContentTemplate="{StaticResource BarButtonMenus}" ItemClick="BarButtonAdd_OnItemClick"/>
+                <dxb:BarButtonItem x:Name="BarButtonModify" Content="Редактировать" ContentTemplate="{StaticResource BarButtonMenus}" ItemClick="BarButtonModify_OnItemClick"/>
+                <dxb:BarButtonItem x:Name="BarButtonRemove" Content="Удалить" ContentTemplate="{StaticResource BarButtonMenus}" ItemClick="BarButtonRemove_OnItemClick" IsEnabled="False"/>
             </dxb:BarManager.Items>
             <dxb:BarManager.Bars>
                 <dxb:Bar x:Name="CrudBar" UseWholeRow="True" ShowDragWidget="False">
@@ -36,7 +36,7 @@
                     <dxg:GridControl.Columns>
                         <dxg:GridColumn Header="Дата собеседования" FieldName="Date" FixedWidth="True" Width="150" FilterPopupMode="CheckedList" SortOrder="Ascending"/>
                         <dxg:GridColumn Header="Статус R" FieldName="StatusR" FixedWidth="True" Width="130" FilterPopupMode="CheckedList"/>
-                        <dxg:GridColumn Header="Коментарий HR" FieldName="HrComment" FixedWidth="True" Width="130" FilterPopupMode="CheckedList"/>
+                        <dxg:GridColumn Header="Коментарий HR" FieldName="HrComment" FilterPopupMode="CheckedList" />
                         <dxg:GridColumn Header="Результаты тестирования" FieldName="TestResult" FixedWidth="True" Width="170" FilterPopupMode="CheckedList"/>
                         <dxg:GridColumn Header="Статус собеседования" FieldName="InterviewStatus" FixedWidth="True" Width="170" FilterPopupMode="CheckedList"/>
                         <dxg:GridColumn Header="Коментарий соискателя" FieldName="CompetitorComment" FixedWidth="True" Width="170" FilterPopupMode="CheckedList"/>

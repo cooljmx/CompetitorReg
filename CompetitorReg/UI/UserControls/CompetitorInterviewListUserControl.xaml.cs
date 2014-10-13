@@ -29,21 +29,6 @@ namespace CompetitorReg.UI.UserControls
             model = new CompetitorInterviewListModel(sessionHelper);
         }
 
-        private void BarButtonAdd_OnItemClickdd_OnItemClick(object sender, ItemClickEventArgs e)
-        {
-            throw new NotImplementedException();
-        }
-
-        private void BarButtonModify_OnItemClickButtonModify_OnItemClick(object sender, ItemClickEventArgs e)
-        {
-            throw new NotImplementedException();
-        }
-
-        private void BarButtonRemove_OnItemClicknRemove_OnItemClick(object sender, ItemClickEventArgs e)
-        {
-            throw new NotImplementedException();
-        }
-
         private void Control_OnMouseDoubleClickMouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             if (!UiHelper.TestGridControlForRowCell(sender, e)) return;
@@ -54,8 +39,28 @@ namespace CompetitorReg.UI.UserControls
         {
             var card = resolver.CreateInstance<InterviewCard>();
             card.Model.LoadData(Model.FocusedRow.Id);
-            //card.Title = Model.FocusedRow.CompetitorName;
             card.ShowDialog();
+            if (card.Model.IsSaved)
+                Model.ReloadFocusedRow();
+        }
+
+        private void BarButtonAdd_OnItemClick(object sender, ItemClickEventArgs e)
+        {
+            var card = resolver.CreateInstance<InterviewCard>();
+            card.Model.Init((int)PanelId);
+            card.ShowDialog();
+            if (card.Model.IsSaved)
+                Model.ReloadAfterAdd(card.Model.Data.Id);
+        }
+
+        private void BarButtonModify_OnItemClick(object sender, ItemClickEventArgs e)
+        {
+            DoModify();
+        }
+
+        private void BarButtonRemove_OnItemClick(object sender, ItemClickEventArgs e)
+        {
+            throw new NotImplementedException();
         }
     }
 }

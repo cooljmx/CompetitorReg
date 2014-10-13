@@ -1,5 +1,8 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
+using System.Windows.Input;
 using CompetitorReg.Infrastructure.Abstract;
+using CompetitorReg.Infrastructure.Concrete;
 using CompetitorReg.Models.InterviewModels;
 
 namespace CompetitorReg.UI.Windows
@@ -18,12 +21,20 @@ namespace CompetitorReg.UI.Windows
 
         private void SaveButton_OnClick(object sender, RoutedEventArgs e)
         {
-            throw new System.NotImplementedException();
+            try
+            {
+                model.SaveData();
+                Close();
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show(exception.Message);
+            }
         }
 
         private void CancelButton_OnClick(object sender, RoutedEventArgs e)
         {
-            throw new System.NotImplementedException();
+            Close();
         }
 
         private void AddPositionButton_OnClick(object sender, RoutedEventArgs e)
@@ -35,5 +46,16 @@ namespace CompetitorReg.UI.Windows
         {
             Model.RemovePosition();
         }
+
+        private void ExistsPositionGrid_OnMouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if (!UiHelper.TestGridControlForRowCell(sender, e)) return;
+            Model.AddPosition();
+        }
+
+        private void PositionGrid_OnMouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if (!UiHelper.TestGridControlForRowCell(sender, e)) return;
+            Model.RemovePosition();}
     }
 }
