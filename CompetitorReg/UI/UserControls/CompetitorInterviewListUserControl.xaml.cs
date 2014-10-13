@@ -54,6 +54,7 @@ namespace CompetitorReg.UI.UserControls
         {
             var card = resolver.CreateInstance<InterviewCard>();
             card.Model.LoadData(Model.FocusedRow.Id);
+            //card.Title = Model.FocusedRow.CompetitorName;
             card.ShowDialog();
         }
     }

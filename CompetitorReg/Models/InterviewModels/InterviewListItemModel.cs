@@ -7,6 +7,7 @@ namespace CompetitorReg.Models.InterviewModels
     {
         private int id;
         private int idCompetitor;
+        //private string competitorName;
         private string statusR;
         private string hrComment;
         private DateTime date;
@@ -18,6 +19,7 @@ namespace CompetitorReg.Models.InterviewModels
 
         public int Id { get { return id; } set { id = value; NotifyPropertyChanged("Id"); } }
         public int IdCompetitor { get { return idCompetitor; } set { idCompetitor = value; NotifyPropertyChanged("IdCompetitor"); } }
+        //public string CompetitorName { get { return competitorName; } set { competitorName = value; NotifyPropertyChanged("CompetitorName"); } }
         public string StatusR { get { return statusR; } set { statusR = value; NotifyPropertyChanged("StatusR"); } }
         public string HrComment { get { return hrComment; } set { hrComment = value; NotifyPropertyChanged("HrComment"); } }
         public DateTime Date { get { return date; } set { date = value; NotifyPropertyChanged("Date"); } }

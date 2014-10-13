@@ -30,6 +30,7 @@ namespace CompetitorReg.Models.InterviewModels
                     {
                         Id = interview.Id,
                         IdCompetitor = competitorId,
+                        //CompetitorName = string.Format("{0} {1} {2}", interview.Competitor.Surname, interview.Competitor.Name, interview.Competitor.MiddleName),
                         StatusR = interview.StatusR.Name,
                         HrComment = interview.HrComment,
                         Date = interview.Date,

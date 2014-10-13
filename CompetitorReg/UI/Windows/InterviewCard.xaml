@@ -4,12 +4,38 @@
         xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
         xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
         xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
-        Title="InterviewCard" Height="300" Width="800" WindowStartupLocation="CenterScreen">
+        Title="Собеседование" Height="300" Width="800" WindowStartupLocation="CenterScreen">
     <Grid DataContext="{Binding RelativeSource={RelativeSource AncestorType=dx:DXWindow}, Path=Model}">
         <dxlc:LayoutControl Orientation="Vertical">
-            <dxlc:LayoutGroup VerticalAlignment="Top">
-                <dxlc:LayoutItem>
-                    <dxe:ComboBoxEdit ItemsSource="{Binding Data.StatusRList}" SelectedItem="{Binding Data.StatusR}" DisplayMember="Name"/>
+            <dxlc:LayoutGroup VerticalAlignment="Top" Orientation="Vertical">
+                <dxlc:LayoutGroup>
+                    <dxlc:LayoutItem HorizontalAlignment="Stretch">
+                        <TextBlock Text="{Binding Data.CompetitorName}" FontWeight="Bold" FontSize="20"/>
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem Label="Дата собеседования" HorizontalAlignment="Right">
+                        <dxe:DateEdit DateTime="{Binding Data.Date}"/>
+                    </dxlc:LayoutItem>
+                </dxlc:LayoutGroup>
+                <dxlc:LayoutGroup>
+                    <dxlc:LayoutItem Label="Статус R" LabelPosition="Top">
+                        <dxe:ComboBoxEdit ItemsSource="{Binding Data.StatusRList}" SelectedItem="{Binding Data.StatusR}" DisplayMember="Name"/>
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem Label="Статус собеседования" LabelPosition="Top">
+                        <dxe:ComboBoxEdit ItemsSource="{Binding Data.InterviewStatusList}" DisplayMember="Name" SelectedItem="{Binding Data.InterviewStatus}"/>
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem Label="Статус СБ" LabelPosition="Top">
+                        <dxe:ComboBoxEdit ItemsSource="{Binding Data.InterviewSecurityStatusList}" DisplayMember="Name" SelectedItem="{Binding Data.InterviewSecurityStatus}"/>
+                    </dxlc:LayoutItem>
+                </dxlc:LayoutGroup>
+                <dxlc:LayoutItem Label="Коментарий HR" LabelPosition="Top">
+                    <dxe:MemoEdit EditValue="{Binding Data.HrComment}" ShowEditorButtons="False" TextWrapping="Wrap">
+                    </dxe:MemoEdit>
+                </dxlc:LayoutItem>
+                <dxlc:LayoutItem Label="Результаты тестирования">
+                    <dxe:TextEdit EditValue="{Binding Data.TestResult}"/>
+                </dxlc:LayoutItem>
+                <dxlc:LayoutItem Label="Коментарий соискателя">
+                    <dxe:TextEdit EditValue="{Binding Data.CompetitorComment}"/>
                 </dxlc:LayoutItem>
             </dxlc:LayoutGroup>
             <dxlc:LayoutGroup VerticalAlignment="Stretch" Orientation="Horizontal">
@@ -24,7 +50,8 @@
                         <Button Width="22" Height="22" Content="&gt;" Name="AddPositionButton" Click="AddPositionButton_OnClick"/>
                     </dxlc:LayoutItem>
                 </dxlc:LayoutGroup>
-                <dxlc:LayoutItem VerticalAlignment="Stretch" Label="Претендуемые должности" LabelPosition="Top" DataContext="{Binding RelativeSource={RelativeSource AncestorType=dx:DXWindow}, Path=Model.Data, Mode=TwoWay}">
+                <dxlc:LayoutItem VerticalAlignment="Stretch" Label="Претендуемые должности" LabelPosition="Top" 
+                                 DataContext="{Binding RelativeSource={RelativeSource AncestorType=dx:DXWindow}, Path=Model.Data}">
                     <dxe:ListBoxEdit ItemsSource="{Binding PositionList}" DisplayMember="Name" SelectedItem="{Binding SelectedPosition}"/>
                 </dxlc:LayoutItem>
             </dxlc:LayoutGroup>
