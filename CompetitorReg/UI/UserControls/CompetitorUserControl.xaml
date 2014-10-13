@@ -24,9 +24,10 @@
                 <dxb:BarButtonItem x:Name="BarButtonAdd" Content="Добавить" ContentTemplate="{StaticResource BarButtonMenus}" ItemClick="BarButtonAdd_OnItemClick"/>
                 <dxb:BarButtonItem x:Name="BarButtonModify" Content="Редактировать" ContentTemplate="{StaticResource BarButtonMenus}" ItemClick="BarButtonModify_OnItemClick"/>
                 <dxb:BarButtonItem x:Name="BarButtonRemove" Content="Удалить" ContentTemplate="{StaticResource BarButtonMenus}" ItemClick="BarButtonRemove_OnItemClick" IsEnabled="False"/>
+                <dxb:BarButtonItem x:Name="BarButtonExport" Content="Экспорт в Excel" ItemClick="BarButtonExport_OnItemClick"/>
                 <dxb:BarEditItem x:Name="BarSurnameEditItem" Content="Фамилия" EditWidth="100" EditValue="{Binding SurnameFilter}">
                     <dxb:BarEditItem.EditSettings>
-                        <dxe:TextEditSettings/>
+                        <dxe:ButtonEditSettings NullValueButtonPlacement="EditBox" AllowDefaultButton="False"/>
                     </dxb:BarEditItem.EditSettings>
                 </dxb:BarEditItem>
             </dxb:BarManager.Items>
@@ -38,6 +39,8 @@
                     <dxb:BarButtonItemLink BarItemName="BarButtonAdd"/>
                     <dxb:BarButtonItemLink BarItemName="BarButtonModify"/>
                     <dxb:BarButtonItemLink BarItemName="BarButtonRemove"/>
+                    <dxb:BarItemLinkSeparator />
+                    <dxb:BarButtonItemLink BarItemName="BarButtonExport"/>
                 </dxb:Bar>
                 <dxb:Bar x:Name="FilterBar" ShowDragWidget="False" UseWholeRow="True">
                     <dxb:Bar.DockInfo>

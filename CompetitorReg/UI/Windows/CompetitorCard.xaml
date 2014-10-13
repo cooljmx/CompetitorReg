@@ -5,27 +5,89 @@
         xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
         xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
         x:Class="CompetitorReg.UI.Windows.CompetitorCard"
-        Title="Карточка сотрудника" Height="300" Width="500" WindowStartupLocation="CenterScreen" WindowStyle="SingleBorderWindow" ResizeMode="NoResize">
+        Title="Карточка сотрудника" Height="610" Width="500" WindowStartupLocation="CenterScreen" WindowStyle="SingleBorderWindow" ResizeMode="NoResize" dx:ThemeManager.Theme="VS2010">
     <dxlc:LayoutControl HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Orientation="Vertical" DataContext="{Binding RelativeSource={RelativeSource AncestorType=dx:DXWindow}, Path=Model}">
         <dxlc:LayoutGroup Orientation="Vertical">
-            <dxlc:LayoutItem Label="Идентификатор">
-                <dxe:TextEdit EditValue="{Binding Data.Id}" IsReadOnly="True"/>
-            </dxlc:LayoutItem>
-            <dxlc:LayoutItem Label="Фамилия">
-                <dxe:TextEdit EditValue="{Binding Data.Surname}"/>
-            </dxlc:LayoutItem>
-            <dxlc:LayoutItem Label="Имя">
-                <dxe:TextEdit EditValue="{Binding Data.Name}"/>
-            </dxlc:LayoutItem>
-            <dxlc:LayoutItem Label="Отчество">
-                <dxe:TextEdit EditValue="{Binding Data.MiddleName}"/>
-            </dxlc:LayoutItem>
-            <dxlc:LayoutItem Label="Контактный телефон">
-                <dxe:TextEdit EditValue="{Binding Data.ContactPhone}"/>
-            </dxlc:LayoutItem>
-            <dxlc:LayoutItem Label="Дата рождения">
-                <dxe:DateEdit DateTime="{Binding Data.BirthDate}"/>
-            </dxlc:LayoutItem>
+            <dxlc:LayoutGroup Orientation="Vertical" Header="Общая информация" View="GroupBox">
+                <dxlc:LayoutGroup.GroupBoxStyle>
+                    <Style TargetType="dxlc:GroupBox">
+                        <Setter Property="TitleBackground" Value="LightYellow"/>
+                    </Style>
+                </dxlc:LayoutGroup.GroupBoxStyle>
+                <dxlc:LayoutGroup>
+                    <dxlc:LayoutItem Label="Фамилия" LabelPosition="Top" HorizontalAlignment="Left">
+                        <dxe:TextEdit EditValue="{Binding Data.Surname}" Width="160"/>
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem Label="Имя" LabelPosition="Top" HorizontalAlignment="Left">
+                        <dxe:TextEdit EditValue="{Binding Data.Name}" Width="120"/>
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem Label="Отчество" LabelPosition="Top" HorizontalAlignment="Stretch">
+                        <dxe:TextEdit EditValue="{Binding Data.MiddleName}"/>
+                    </dxlc:LayoutItem>
+                </dxlc:LayoutGroup>
+                <dxlc:LayoutGroup>
+                    <dxlc:LayoutItem Label="Девичья фамилия" LabelPosition="Top" HorizontalAlignment="Left">
+                        <dxe:TextEdit EditValue="{Binding Data.Nee}" Width="160"/>
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem Label="Дата рождения" HorizontalAlignment="Right" LabelPosition="Top">
+                        <dxe:DateEdit DateTime="{Binding Data.BirthDate}"/>
+                    </dxlc:LayoutItem>
+                </dxlc:LayoutGroup>
+                <dxlc:LayoutItem Label="Место рождения" LabelPosition="Top">
+                    <dxe:TextEdit EditValue="{Binding Data.BirthPlace}"/>
+                </dxlc:LayoutItem>
+            </dxlc:LayoutGroup>
+            
+            <dxlc:LayoutGroup Orientation="Vertical" Header="Паспорт" View="GroupBox">
+                <dxlc:LayoutGroup.GroupBoxStyle>
+                    <Style TargetType="dxlc:GroupBox">
+                        <Setter Property="TitleBackground" Value="LightYellow"/>
+                    </Style>
+                </dxlc:LayoutGroup.GroupBoxStyle>
+                <dxlc:LayoutGroup>
+                    <dxlc:LayoutItem Label="Серия" LabelPosition="Top">
+                        <dxe:TextEdit EditValue="{Binding Data.PassportSerial}" Mask="00 00" MaskBeepOnError="True" MaskType="Simple" MaskUseAsDisplayFormat="True"/>
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem Label="Номер" LabelPosition="Top">
+                        <dxe:TextEdit EditValue="{Binding Data.PassportNumber}" Mask="000000" MaskBeepOnError="True" MaskType="Simple" MaskUseAsDisplayFormat="True"/>
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem Label="Дата выдачи" LabelPosition="Top">
+                        <dxe:DateEdit DateTime="{Binding Data.IssueDate}"/>
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem Label="Код подразделения" LabelPosition="Top">
+                        <dxe:TextEdit EditValue="{Binding Data.DepartmentCode}" Mask="000-000" MaskBeepOnError="True" MaskType="Simple" MaskUseAsDisplayFormat="True"/>
+                    </dxlc:LayoutItem>
+                </dxlc:LayoutGroup>
+                <dxlc:LayoutItem Label="Орган выдачи" LabelPosition="Top">
+                    <dxe:TextEdit EditValue="{Binding Data.IssuingAuthority}"/>
+                </dxlc:LayoutItem>
+            </dxlc:LayoutGroup>
+            
+            <dxlc:LayoutGroup Header="Проживание" View="GroupBox" Orientation="Vertical">
+                <dxlc:LayoutGroup.GroupBoxStyle>
+                    <Style TargetType="dxlc:GroupBox">
+                        <Setter Property="TitleBackground" Value="LightYellow"/>
+                    </Style>
+                </dxlc:LayoutGroup.GroupBoxStyle>
+                <dxlc:LayoutItem Label="Место регистрации" LabelPosition="Top">
+                    <dxe:TextEdit EditValue="{Binding Data.IncorporationPlace}"/>
+                </dxlc:LayoutItem>
+                <dxlc:LayoutItem Label="Место жительства" LabelPosition="Top">
+                    <dxe:TextEdit EditValue="{Binding Data.ResidencePlace}"/>
+                </dxlc:LayoutItem>
+            </dxlc:LayoutGroup>
+            
+            <dxlc:LayoutGroup Header="Дополнительная информация" View="GroupBox">
+                <dxlc:LayoutGroup.GroupBoxStyle>
+                    <Style TargetType="dxlc:GroupBox">
+                        <Setter Property="TitleBackground" Value="LightYellow"/>
+                    </Style>
+                </dxlc:LayoutGroup.GroupBoxStyle>
+                <dxlc:LayoutItem Label="Контактный телефон">
+                    <dxe:TextEdit EditValue="{Binding Data.ContactPhone}"/>
+                </dxlc:LayoutItem>
+            </dxlc:LayoutGroup>
+            
         </dxlc:LayoutGroup>
         <dxlc:LayoutGroup VerticalAlignment="Bottom">
             <dxlc:LayoutItem HorizontalAlignment="Right">

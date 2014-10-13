@@ -19,6 +19,15 @@ namespace CompetitorReg.Models.CompetitorModels
                 Data.MiddleName = competitor.MiddleName;
                 Data.ContactPhone = competitor.ContactPhone;
                 Data.BirthDate = competitor.BirthDate;
+                Data.BirthPlace = competitor.BirthPlace;
+                Data.PassportSerial = competitor.PassportSerial;
+                Data.PassportNumber = competitor.PassportNumber;
+                Data.IssuingAuthority = competitor.IssuingAuthority;
+                Data.DepartmentCode = competitor.DepartmentCode;
+                Data.IssueDate = competitor.IssueDate;
+                Data.Nee = competitor.Nee;
+                Data.IncorporationPlace = competitor.IncorporationPlace;
+                Data.ResidencePlace = competitor.ResidencePlace;
             }
         }
 
@@ -33,7 +42,16 @@ namespace CompetitorReg.Models.CompetitorModels
                     Name = Data.Name,
                     MiddleName = Data.MiddleName,
                     ContactPhone = Data.ContactPhone,
-                    BirthDate = Data.BirthDate
+                    BirthDate = Data.BirthDate,
+                    BirthPlace = Data.BirthPlace,
+                    PassportNumber = Data.PassportNumber,
+                    PassportSerial = Data.PassportSerial,
+                    IssuingAuthority = Data.IssuingAuthority,
+                    DepartmentCode = Data.DepartmentCode,
+                    IssueDate = Data.IssueDate,
+                    Nee = Data.Nee,
+                    IncorporationPlace = Data.IncorporationPlace,
+                    ResidencePlace = Data.ResidencePlace
                 };
                 session.SaveOrUpdate(competitor);
                 session.Flush();

@@ -60,5 +60,10 @@ namespace CompetitorReg.UI.UserControls
             if (!UiHelper.TestGridControlForRowCell(sender, e)) return;
             documentPanelManager.SelectPanel(typeof(CompetitorInterviewListUserControl), Model.FocusedRow.Id, Model.FocusedRow.ShortName, true);
         }
+
+        private void BarButtonExport_OnItemClick(object sender, ItemClickEventArgs e)
+        {
+            Model.ExportToExcel();
+        }
     }
 }

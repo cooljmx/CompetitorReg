@@ -6,7 +6,7 @@
              xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
              xmlns:converters="clr-namespace:CompetitorReg.Infrastructure.Concrete.Converters"
              xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
-             Title="Собеседование" Height="400" Width="800" WindowStartupLocation="CenterScreen" WindowStyle="SingleBorderWindow" ResizeMode="NoResize">
+             Title="Собеседование" Height="400" Width="800" WindowStartupLocation="CenterScreen" WindowStyle="SingleBorderWindow" ResizeMode="NoResize" dx:ThemeManager.Theme="VS2010">
     <Grid DataContext="{Binding RelativeSource={RelativeSource AncestorType=dx:DXWindow}, Path=Model}">
         <Grid.Resources>
             <converters:NotNullConverter x:Key="NotNullConverter"/>

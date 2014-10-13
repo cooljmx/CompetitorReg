@@ -5,7 +5,7 @@
         xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars"
         xmlns:dxdo="http://schemas.devexpress.com/winfx/2008/xaml/docking"
         x:Class="CompetitorReg.MainWindow"
-        Title="Реестр соискателей" WindowState="Maximized">
+        Title="Реестр соискателей" WindowState="Maximized" dx:ThemeManager.Theme="VS2010">
     <dxb:BarManager>
         <dxb:BarManager.Resources>
             <DataTemplate x:Key="BarButtonMenus">
