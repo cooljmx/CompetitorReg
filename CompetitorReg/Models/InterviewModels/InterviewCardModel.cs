@@ -14,6 +14,7 @@ namespace CompetitorReg.Models.InterviewModels
                 Data.StatusRList = session.QueryOver<StatusR>().List();
                 Data.InterviewStatusList = session.QueryOver<InterviewStatus>().List();
                 Data.InterviewSecurityStatusList = session.QueryOver<InterviewSecurityStatus>().List();
+                Data.AllpositionList = session.QueryOver<Position>().List();
                 foreach (var position in session.QueryOver<Position>().List())
                 {
                     Data.ExistsPositionList.Add(position);   
@@ -55,6 +56,8 @@ namespace CompetitorReg.Models.InterviewModels
                 if (query.StatusR != null)
                     Data.StatusR = Data.StatusRList.FirstOrDefault(x => x.Id == query.StatusR.Id);
                 Data.TestResult = query.TestResult;
+                if (query.Position != null)
+                    Data.Position = Data.AllpositionList.FirstOrDefault(x => x.Id == query.Position.Id);
                 foreach (var position in query.PositionList)
                 {
                     var item = Data.ExistsPositionList.FirstOrDefault(x => x.Id == position.Id); // берем из листа существующих, чтобы иметь одинаковые ссылки
@@ -79,7 +82,8 @@ namespace CompetitorReg.Models.InterviewModels
                     PositionList = Data.PositionList,
                     InterviewStatus = Data.InterviewStatus,
                     StatusR = Data.StatusR,
-                    TestResult = Data.TestResult
+                    TestResult = Data.TestResult,
+                    Position = Data.Position
                 };
                 session.SaveOrUpdate(interview);
                 session.Flush();

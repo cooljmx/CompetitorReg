@@ -1,4 +1,5 @@
 ﻿using System;
+using CompetitorReg.Entities;
 using CompetitorReg.Infrastructure.Concrete;
 
 namespace CompetitorReg.Models.CompetitorModels
@@ -13,7 +14,7 @@ namespace CompetitorReg.Models.CompetitorModels
         private DateTime birthDate;
         private string birthPlace;
         private string passportSerial;
-        private int passportNumber;
+        private string passportNumber;
         private string issuingAuthority;
         private string departmentCode;
         private DateTime issueDate;
@@ -29,7 +30,7 @@ namespace CompetitorReg.Models.CompetitorModels
         public DateTime BirthDate { get { return birthDate; } set { birthDate = value; NotifyPropertyChanged("BirthDate"); } }
         public string BirthPlace { get { return birthPlace; } set { birthPlace = value; NotifyPropertyChanged("BirthPlace"); } }
         public string PassportSerial { get { return passportSerial; } set { passportSerial = value;NotifyPropertyChanged("PassportSerial"); } }
-        public int PassportNumber { get { return passportNumber; } set { passportNumber = value; NotifyPropertyChanged("PassportNumber"); } }
+        public string PassportNumber { get { return passportNumber; } set { passportNumber = value; NotifyPropertyChanged("PassportNumber"); } }
         public string IssuingAuthority { get { return issuingAuthority; } set { issuingAuthority = value; NotifyPropertyChanged("IssuingAuthority"); } }
         public string DepartmentCode { get { return departmentCode; } set { departmentCode = value; NotifyPropertyChanged("DepartmentCode"); } }
         public DateTime IssueDate { get { return issueDate; } set { issueDate = value; NotifyPropertyChanged("IssueDate"); } }

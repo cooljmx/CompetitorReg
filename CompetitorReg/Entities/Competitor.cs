@@ -14,7 +14,7 @@ namespace CompetitorReg.Entities
         public virtual DateTime BirthDate { get; set; }
         public virtual string BirthPlace { get; set; }
         public virtual string PassportSerial { get; set; }
-        public virtual int PassportNumber { get; set; }
+        public virtual string PassportNumber { get; set; }
         public virtual string IssuingAuthority { get; set; }
         public virtual string DepartmentCode { get; set; }
         public virtual DateTime IssueDate { get; set; }

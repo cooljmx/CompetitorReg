@@ -16,6 +16,8 @@ namespace CompetitorReg.Models.InterviewModels
         private string interviewSecurityStatus;
         private string competitorComment;
         private string positions;
+        private string position;
+
 
         public int Id { get { return id; } set { id = value; NotifyPropertyChanged("Id"); } }
         public int IdCompetitor { get { return idCompetitor; } set { idCompetitor = value; NotifyPropertyChanged("IdCompetitor"); } }
@@ -28,5 +30,6 @@ namespace CompetitorReg.Models.InterviewModels
         public string InterviewSecurityStatus { get { return interviewSecurityStatus; } set { interviewSecurityStatus = value; NotifyPropertyChanged("InterviewSecurityStatus"); } }
         public string CompetitorComment { get { return competitorComment; } set { competitorComment = value; NotifyPropertyChanged("CompetitorComment"); } }
         public string Positions { get { return positions; } set { positions = value; NotifyPropertyChanged("Positions"); } }
+        public string Position { get { return position; } set { position = value; NotifyPropertyChanged("Position"); } }
     }
 }

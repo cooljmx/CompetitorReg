@@ -21,6 +21,9 @@
                         <dxe:DateEdit DateTime="{Binding Data.Date}"/>
                     </dxlc:LayoutItem>
                 </dxlc:LayoutGroup>
+                <dxlc:LayoutItem LabelPosition="Top" Label="Согласованная должность" HorizontalAlignment="Left">
+                    <dxe:ComboBoxEdit ItemsSource="{Binding Data.AllpositionList}" SelectedItem="{Binding Data.Position}" DisplayMember="Name"/>
+                </dxlc:LayoutItem>
                 <dxlc:LayoutGroup>
                     <dxlc:LayoutItem Label="Результаты тестирования" LabelPosition="Top" HorizontalAlignment="Left">
                         <dxe:TextEdit EditValue="{Binding Data.TestResult}"/>
@@ -54,13 +57,13 @@
                         </dxg:GridControl.View>
                     </dxg:GridControl>
                 </dxlc:LayoutItem>
-                <dxlc:LayoutGroup VerticalAlignment="Center" Width="50">
+                <dxlc:LayoutGroup VerticalAlignment="Center" Width="70">
                     <dxlc:LayoutItem>
-                        <Button Width="22" Height="22" Content="&lt;" Name="RemovePositionButton" Click="RemovePositionButton_OnClick" 
+                        <Button Width="32" Height="22" Content="&lt;" Name="RemovePositionButton" Click="RemovePositionButton_OnClick" 
                                 IsEnabled="{Binding Data.SelectedPosition, Converter={StaticResource NotNullConverter}}"/>
                     </dxlc:LayoutItem>
                     <dxlc:LayoutItem>
-                        <Button Width="22" Height="22" Content="&gt;" Name="AddPositionButton" Click="AddPositionButton_OnClick" 
+                        <Button Width="32" Height="22" Content="&gt;" Name="AddPositionButton" Click="AddPositionButton_OnClick" 
                                 IsEnabled="{Binding Data.SelectedExistsPosition, Converter={StaticResource NotNullConverter}}"/>
                     </dxlc:LayoutItem>
                 </dxlc:LayoutGroup>

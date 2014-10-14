@@ -197,8 +197,6 @@ namespace CompetitorReg.Models.CompetitorModels
                     competitor.IssueDate.ToShortDateString(), competitor.DepartmentCode);
                 worksheet.Range["H" + row].Value2 = competitor.IncorporationPlace;
                 worksheet.Range["I" + row].Value2 = competitor.ResidencePlace;
-                worksheet.Range["J" + row].Value2 = 148;
-                worksheet.Range["K" + row].Value2 = 148;
 
                 worksheet.Range["A" + row].Cells.HorizontalAlignment = XlHAlign.xlHAlignCenter;
                 worksheet.Range["B" + row].Cells.HorizontalAlignment = XlHAlign.xlHAlignCenter;

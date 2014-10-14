@@ -1,11 +1,7 @@
-﻿<Application x:Class="StaffReg.App"
+﻿<Application x:Class="CompetitorReg.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              StartupUri="MainWindow.xaml">
-<!--<Application x:Class="StaffReg.App"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             Startup="App_OnStartup">-->
     <Application.Resources>
          
     </Application.Resources>

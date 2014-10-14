@@ -42,6 +42,7 @@
                         <dxg:GridColumn Header="Коментарий соискателя" FieldName="CompetitorComment" FixedWidth="True" Width="170" FilterPopupMode="CheckedList"/>
                         <dxg:GridColumn Header="Статус СБ" FieldName="InterviewSecurityStatus" FixedWidth="True" Width="130" FilterPopupMode="CheckedList"/>
                         <dxg:GridColumn Header="Претендуемые должности" FieldName="Positions" FixedWidth="True" Width="170" FilterPopupMode="CheckedList"/>
+                        <dxg:GridColumn Header="Согласованная должность" FieldName="Position" FixedWidth="True" Width="170" FilterPopupMode="CheckedList"/>
                     </dxg:GridControl.Columns>
                     <dxg:GridControl.View>
                         <dxg:TableView x:Name="MainGridView" ShowTotalSummary="True" NavigationStyle="Row" AutoWidth="True" AllowEditing="False" ShowGroupPanel="False">

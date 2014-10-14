@@ -22,10 +22,13 @@ namespace CompetitorReg.Models.InterviewModels
         private Position selectedExistsPosition;
         private readonly ObservableCollection<Position> positionList = new ObservableCollection<Position>();
         private readonly ObservableCollection<Position> existsPositionList = new ObservableCollection<Position>();
+        private Position position;
 
         public int Id { get { return id; } set { id = value; NotifyPropertyChanged("Id"); } }
         public StatusR StatusR { get { return statusR; } set { statusR = value; NotifyPropertyChanged("StatusR"); } }
         public IList<StatusR> StatusRList { get; set; }
+        public IList<Position> AllpositionList { get; set; }
+        public Position Position { get; set; }
 
         public Competitor Competitor { get { return competitor; } set { competitor = value; NotifyPropertyChanged("Competitor"); NotifyPropertyChanged("CompetitorName"); } }
 

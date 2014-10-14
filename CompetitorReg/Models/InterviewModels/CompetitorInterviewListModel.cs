@@ -37,7 +37,8 @@ namespace CompetitorReg.Models.InterviewModels
                         InterviewStatus = interview.InterviewStatus == null ? null : interview.InterviewStatus.Name,
                         InterviewSecurityStatus = interview.InterviewSecurityStatus == null ? null : interview.InterviewSecurityStatus.Name,
                         CompetitorComment = interview.CompetitorComment,
-                        Positions = interview.PositionList.Count == 0 ? string.Empty : interview.PositionList.Select(x => x.Name) .OrderBy(x => x) .Aggregate((a, b) => a + "," + b) 
+                        Positions = interview.PositionList.Count == 0 ? string.Empty : interview.PositionList.Select(x => x.Name) .OrderBy(x => x) .Aggregate((a, b) => a + "," + b) ,
+                        Position = interview.Position.Name
                     });
                 }
             }
@@ -64,7 +65,8 @@ namespace CompetitorReg.Models.InterviewModels
                     InterviewStatus = itemDb.InterviewStatus == null ? null : itemDb.InterviewStatus.Name,
                     InterviewSecurityStatus = itemDb.InterviewSecurityStatus == null ? null : itemDb.InterviewSecurityStatus.Name,
                     CompetitorComment = itemDb.CompetitorComment,
-                    Positions = itemDb.PositionList.Count == 0 ? string.Empty : itemDb.PositionList.Select(x => x.Name).OrderBy(x => x).Aggregate((a, b) => a + "," + b)
+                    Positions = itemDb.PositionList.Count == 0 ? string.Empty : itemDb.PositionList.Select(x => x.Name).OrderBy(x => x).Aggregate((a, b) => a + "," + b),
+                    Position = itemDb.Position.Name
                 };
                 FocusedRow = Data[index];
             }
@@ -86,7 +88,8 @@ namespace CompetitorReg.Models.InterviewModels
                     InterviewStatus = itemDb.InterviewStatus == null ? null : itemDb.InterviewStatus.Name,
                     InterviewSecurityStatus = itemDb.InterviewSecurityStatus == null ? null : itemDb.InterviewSecurityStatus.Name,
                     CompetitorComment = itemDb.CompetitorComment,
-                    Positions = itemDb.PositionList.Count == 0 ? string.Empty : itemDb.PositionList.Select(x => x.Name).OrderBy(x => x).Aggregate((a, b) => a + "," + b)
+                    Positions = itemDb.PositionList.Count == 0 ? string.Empty : itemDb.PositionList.Select(x => x.Name).OrderBy(x => x).Aggregate((a, b) => a + "," + b),
+                    Position = itemDb.Position.Name
                 };
                 Data.Add(itemGrid);
                 FocusedRow = itemGrid;
