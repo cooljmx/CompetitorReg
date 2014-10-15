@@ -35,10 +35,16 @@ namespace CompetitorReg.Models.InterviewModels
                         Date = interview.Date,
                         TestResult = interview.TestResult,
                         InterviewStatus = interview.InterviewStatus == null ? null : interview.InterviewStatus.Name,
-                        InterviewSecurityStatus = interview.InterviewSecurityStatus == null ? null : interview.InterviewSecurityStatus.Name,
+                        InterviewSecurityStatus =
+                            interview.InterviewSecurityStatus == null ? null : interview.InterviewSecurityStatus.Name,
                         CompetitorComment = interview.CompetitorComment,
-                        Positions = interview.PositionList.Count == 0 ? string.Empty : interview.PositionList.Select(x => x.Name) .OrderBy(x => x) .Aggregate((a, b) => a + "," + b) ,
-                        Position = interview.Position.Name
+                        Positions =
+                            interview.PositionList.Count == 0
+                                ? string.Empty
+                                : interview.PositionList.Select(x => x.Name)
+                                    .OrderBy(x => x)
+                                    .Aggregate((a, b) => a + "," + b),
+                        Position = interview.Position == null ? null : interview.Position.Name
                     });
                 }
             }

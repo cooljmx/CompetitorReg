@@ -21,6 +21,7 @@ namespace CompetitorReg.Entities
         public virtual string Nee { get; set; }
         public virtual string IncorporationPlace { get; set; }
         public virtual string ResidencePlace { get; set; }
+        public virtual IList<Interview> InterviewList { get; set; }
     }
 
     public class CompetitorMap : ClassMap<Competitor>
@@ -43,6 +44,7 @@ namespace CompetitorReg.Entities
             Map(x => x.Nee).Column("Nee");
             Map(x => x.IncorporationPlace).Column("IncorporationPlace");
             Map(x => x.ResidencePlace).Column("ResidencePlace");
+            HasMany(x => x.InterviewList).KeyColumn("IdCompetitor").LazyLoad();
         }
     }
 }

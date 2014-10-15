@@ -1,9 +1,11 @@
-﻿using System.Windows.Input;
+﻿using System.IO;
+using System.Windows.Input;
 using CompetitorReg.Infrastructure.Abstract;
 using CompetitorReg.Infrastructure.Concrete;
 using CompetitorReg.Models.CompetitorModels;
 using CompetitorReg.UI.Windows;
 using DevExpress.Xpf.Bars;
+using DevExpress.XtraPrinting;
 
 namespace CompetitorReg.UI.UserControls
 {
@@ -64,6 +66,13 @@ namespace CompetitorReg.UI.UserControls
         private void BarButtonExport_OnItemClick(object sender, ItemClickEventArgs e)
         {
             Model.ExportToExcel();
+        }
+
+        private void BarButtonExport2_OnItemClick(object sender, ItemClickEventArgs e)
+        {
+            var fileName = Path.GetTempFileName() + ".xls";
+            MainGridView.ExportToXls(fileName);
+            System.Diagnostics.Process.Start(fileName);
         }
     }
 }

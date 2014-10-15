@@ -4,15 +4,16 @@ using System.Drawing;
 using System.Linq;
 using CompetitorReg.Entities;
 using CompetitorReg.Infrastructure.Abstract;
-using DevExpress.Data.PLinq.Helpers;
 using Microsoft.Office.Interop.Excel;
+using NHibernate.Criterion;
+using NHibernate.Transform;
 
 namespace CompetitorReg.Models.CompetitorModels
 {
-    public class CompetitorListModel : CommonListModel<CompetitorModel>
+    public class CompetitorListModel : CommonListModel<CompetitorListItemModel>
     {
         private string surnameFilter;
-        protected readonly ObservableCollection<CompetitorModel> unfilteredData = new ObservableCollection<CompetitorModel>();
+        protected readonly ObservableCollection<CompetitorListItemModel> unfilteredData = new ObservableCollection<CompetitorListItemModel>();
 
         public string SurnameFilter { get { return surnameFilter; } set { surnameFilter = value; NotifyPropertyChanged("SurnameFilter"); FilterData(); } }
 
@@ -36,10 +37,16 @@ namespace CompetitorReg.Models.CompetitorModels
             unfilteredData.Clear();
             using (var session = sessionHelper.NewSession())
             {
-                var query = session.QueryOver<Competitor>().List();
-                foreach (var competitor in query)
+                var query = session.CreateSQLQuery(
+                    @"select c.*, p.* from competitor c left join interview i on i.idcompetitor = c.idcompetitor and i.date = (select max(i2.date) from interview i2 where i2.idcompetitor = c.idcompetitor) left join position p on p.idposition = i.idposition")
+                    .AddEntity("c", typeof (Competitor))
+                    .AddEntity("p", typeof (Position))
+                    .List();
+                foreach (var item in query)
                 {
-                    unfilteredData.Add(new CompetitorModel
+                    var competitor = (Competitor) ((object[]) item)[0];
+                    var position = (Position) ((object[]) item)[1];
+                    unfilteredData.Add(new CompetitorListItemModel
                     {
                         Id = competitor.Id,
                         Surname = competitor.Surname,
@@ -55,7 +62,8 @@ namespace CompetitorReg.Models.CompetitorModels
                         IssueDate = competitor.IssueDate,
                         Nee = competitor.Nee,
                         IncorporationPlace = competitor.IncorporationPlace,
-                        ResidencePlace = competitor.ResidencePlace
+                        ResidencePlace = competitor.ResidencePlace,
+                        Position = position == null ? null : position.Name
                     });
                 }
             }
@@ -72,7 +80,7 @@ namespace CompetitorReg.Models.CompetitorModels
                 if (itemDb == null || itemGrid == null) return;
 
                 var index = unfilteredData.IndexOf(itemGrid);
-                unfilteredData[index] = new CompetitorModel
+                unfilteredData[index] = new CompetitorListItemModel
                 {
                     Id = itemDb.Id,
                     Surname = itemDb.Surname,
@@ -91,7 +99,7 @@ namespace CompetitorReg.Models.CompetitorModels
             using (var session = sessionHelper.NewSession())
             {
                 var itemDb = session.Get<Competitor>(id);
-                var itemGrid = new CompetitorModel
+                var itemGrid = new CompetitorListItemModel
                 {
                     Id = itemDb.Id,
                     Surname = itemDb.Surname,
@@ -187,7 +195,7 @@ namespace CompetitorReg.Models.CompetitorModels
                 worksheet.Range["A" + row].Value2 = index;
                 worksheet.Range["B" + row].Value2 = 148;
                 worksheet.Range["C" + row].Value2 = DateTime.Now.ToShortDateString();
-                worksheet.Range["D" + row].Value2 = "";
+                worksheet.Range["D" + row].Value2 = competitor.Position;
                 worksheet.Range["E" + row].Value2 = competitor.Nee == null
                     ? string.Format("{0} {1} {2}", competitor.Surname, competitor.Name, competitor.MiddleName)
                     : string.Format("{0} ({1}) {2} {3}", competitor.Surname, competitor.Nee, competitor.Name, competitor.MiddleName);

@@ -2,7 +2,7 @@
 
 namespace CompetitorReg.Models.CompetitorModels
 {
-    public class CompetitorCardModel : CommonCardModel<CompetitorModel>
+    public class CompetitorCardModel : CommonCardModel<CompetitorCardItemModel>
     {
         public CompetitorCardModel(ISessionHelper sessionHelper) : base(sessionHelper)
         {

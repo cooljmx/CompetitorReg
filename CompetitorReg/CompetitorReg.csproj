@@ -55,6 +55,7 @@
       <HintPath>C:\Program Files (x86)\DevExpress\DXperience 13.1\Bin\Framework\DevExpress.Data.v13.1.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="DevExpress.Printing.v13.1.Core, Version=13.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Xpf.Core.v13.1, Version=13.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <Private>True</Private>
     </Reference>
@@ -135,6 +136,7 @@
     <Compile Include="Infrastructure\Abstract\IResolver.cs" />
     <Compile Include="Infrastructure\Abstract\ISessionFactoryHelper.cs" />
     <Compile Include="Infrastructure\Abstract\ISessionHelper.cs" />
+    <Compile Include="Infrastructure\Concrete\Converters\NotConverter.cs" />
     <Compile Include="Infrastructure\Concrete\Converters\NotNullConverter.cs" />
     <Compile Include="Infrastructure\Concrete\Resolver.cs" />
     <Compile Include="Infrastructure\Concrete\SessionFactoryHelper.cs" />
@@ -143,9 +145,10 @@
     <Compile Include="Infrastructure\Concrete\UIHelper.cs" />
     <Compile Include="Infrastructure\Concrete\VirtualNotifyPropertyChanged.cs" />
     <Compile Include="Models\CommonListModel.cs" />
+    <Compile Include="Models\CompetitorModels\CompetitorCardItemModel.cs" />
     <Compile Include="Models\CompetitorModels\CompetitorCardModel.cs" />
     <Compile Include="Models\CompetitorModels\CompetitorListModel.cs" />
-    <Compile Include="Models\CompetitorModels\CompetitorModel.cs" />
+    <Compile Include="Models\CompetitorModels\CompetitorListItemModel.cs" />
     <Compile Include="Models\CommonCardModel.cs" />
     <Compile Include="Models\InterviewModels\CompetitorInterviewListModel.cs" />
     <Compile Include="Models\InterviewModels\InterviewCardItemModel.cs" />

@@ -5,8 +5,12 @@
         xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
         xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
         x:Class="CompetitorReg.UI.Windows.CompetitorCard"
-        Title="Карточка сотрудника" Height="610" Width="500" WindowStartupLocation="CenterScreen" WindowStyle="SingleBorderWindow" ResizeMode="NoResize" dx:ThemeManager.Theme="VS2010">
+        xmlns:converters="clr-namespace:CompetitorReg.Infrastructure.Concrete.Converters"
+        Title="Карточка сотрудника" Height="610" Width="500" WindowStartupLocation="CenterScreen" WindowStyle="SingleBorderWindow" ResizeMode="NoResize">
     <dxlc:LayoutControl HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Orientation="Vertical" DataContext="{Binding RelativeSource={RelativeSource AncestorType=dx:DXWindow}, Path=Model}">
+        <dxlc:LayoutControl.Resources>
+           <converters:NotConverter x:Key="NotConverter"/>
+        </dxlc:LayoutControl.Resources>
         <dxlc:LayoutGroup Orientation="Vertical">
             <dxlc:LayoutGroup Orientation="Vertical" Header="Общая информация" View="GroupBox">
                 <dxlc:LayoutGroup.GroupBoxStyle>
@@ -72,9 +76,14 @@
                 <dxlc:LayoutItem Label="Место регистрации" LabelPosition="Top">
                     <dxe:TextEdit EditValue="{Binding Data.IncorporationPlace}"/>
                 </dxlc:LayoutItem>
-                <dxlc:LayoutItem Label="Место жительства" LabelPosition="Top">
-                    <dxe:TextEdit EditValue="{Binding Data.ResidencePlace}"/>
-                </dxlc:LayoutItem>
+                <dxlc:LayoutGroup Orientation="Horizontal">
+                    <dxlc:LayoutItem VerticalAlignment="Bottom" HorizontalAlignment="Left">
+                        <dxe:CheckEdit Content="Тот же" EditValue="{Binding Data.IsSamePlace}" />
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem Label="Место жительства" LabelPosition="Top">
+                        <dxe:TextEdit EditValue="{Binding Data.ResidencePlace}" IsEnabled="{Binding Data.IsSamePlace, Converter={StaticResource NotConverter}}"/>
+                    </dxlc:LayoutItem>
+                </dxlc:LayoutGroup>
             </dxlc:LayoutGroup>
             
             <dxlc:LayoutGroup Header="Дополнительная информация" View="GroupBox">

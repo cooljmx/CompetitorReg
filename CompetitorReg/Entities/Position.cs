@@ -14,7 +14,7 @@ namespace CompetitorReg.Entities
         {
             Table("Position");
             Id(x => x.Id).Column("IdPosition").GeneratedBy.Identity();
-            Map(x => x.Name).Column("Name");
+            Map(x => x.Name).Column("PositionName");
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System.Configuration;
 using System.Reflection;
+using System.Windows;
 using CompetitorReg.Infrastructure.Abstract;
 using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
@@ -21,6 +22,7 @@ namespace CompetitorReg.Infrastructure.Concrete
                 .Mappings(m => m.FluentMappings.AddFromAssembly(Assembly.GetExecutingAssembly()))
                 .Diagnostics(x => x.Enable())
                 .BuildSessionFactory();
+            //MessageBox.Show(connectionString);
         }
 
         public ISessionFactory GetSessionFactory { get { return sessionFactory; } }

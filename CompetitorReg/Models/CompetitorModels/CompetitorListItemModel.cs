@@ -1,10 +1,9 @@
 ﻿using System;
-using CompetitorReg.Entities;
 using CompetitorReg.Infrastructure.Concrete;
 
 namespace CompetitorReg.Models.CompetitorModels
 {
-    public class CompetitorModel : VirtualNotifyPropertyChanged
+    public class CompetitorListItemModel : VirtualNotifyPropertyChanged
     {
         private int id;
         private string surname;
@@ -21,6 +20,7 @@ namespace CompetitorReg.Models.CompetitorModels
         private string nee;
         private string incorporationPlace;
         private string residencePlace;
+        private string position;
 
         public int Id { get { return id; } set { id = value; NotifyPropertyChanged("Id"); } }
         public string Surname { get { return surname; } set { surname = value; NotifyPropertyChanged("Surname"); } }
@@ -37,6 +37,7 @@ namespace CompetitorReg.Models.CompetitorModels
         public string Nee { get { return nee; } set { nee = value; NotifyPropertyChanged("Nee"); } }
         public string IncorporationPlace { get { return incorporationPlace; } set { incorporationPlace = value; NotifyPropertyChanged("IncorporationPlace"); } }
         public string ResidencePlace { get { return residencePlace; } set { residencePlace = value; NotifyPropertyChanged("ResidencePlace"); } }
+        public string Position { get { return position; } set { position = value; NotifyPropertyChanged("Position"); } }
 
         public string ShortName
         {

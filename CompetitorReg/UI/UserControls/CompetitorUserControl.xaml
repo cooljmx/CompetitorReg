@@ -6,12 +6,14 @@
              xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars" 
              xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors" 
              xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
-             xmlns:dxdove="http://schemas.devexpress.com/winfx/2008/xaml/docking/visualelements"
-             xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
-    x:Class="CompetitorReg.UI.UserControls.CompetitorUserControl" 
+             xmlns:converters="clr-namespace:CompetitorReg.Infrastructure.Concrete.Converters"
+             x:Class="CompetitorReg.UI.UserControls.CompetitorUserControl" 
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="800">
+             d:DesignHeight="300" d:DesignWidth="1200">
     <Grid DataContext="{Binding RelativeSource={RelativeSource AncestorType=UserControl}, Path=Model}">
+        <Grid.Resources>
+            <converters:NotNullConverter x:Key="NotNullConverter"/>
+        </Grid.Resources>
         <dxb:BarManager >
             <dxb:BarManager.Resources>
                 <DataTemplate x:Key="BarButtonMenus">
@@ -22,9 +24,11 @@
             </dxb:BarManager.Resources>
             <dxb:BarManager.Items>
                 <dxb:BarButtonItem x:Name="BarButtonAdd" Content="Добавить" ContentTemplate="{StaticResource BarButtonMenus}" ItemClick="BarButtonAdd_OnItemClick"/>
-                <dxb:BarButtonItem x:Name="BarButtonModify" Content="Редактировать" ContentTemplate="{StaticResource BarButtonMenus}" ItemClick="BarButtonModify_OnItemClick"/>
+                <dxb:BarButtonItem x:Name="BarButtonModify" Content="Редактировать" ItemClick="BarButtonModify_OnItemClick" 
+                                   IsEnabled="{Binding FocusedRow, Converter={StaticResource NotNullConverter}}"/>
                 <dxb:BarButtonItem x:Name="BarButtonRemove" Content="Удалить" ContentTemplate="{StaticResource BarButtonMenus}" ItemClick="BarButtonRemove_OnItemClick" IsEnabled="False"/>
                 <dxb:BarButtonItem x:Name="BarButtonExport" Content="Экспорт в Excel" ItemClick="BarButtonExport_OnItemClick"/>
+                <dxb:BarButtonItem x:Name="BarButtonExport2" Content="Экспорт в Excel №2" ItemClick="BarButtonExport2_OnItemClick"/>
                 <dxb:BarEditItem x:Name="BarSurnameEditItem" Content="Фамилия" EditWidth="100" EditValue="{Binding SurnameFilter}">
                     <dxb:BarEditItem.EditSettings>
                         <dxe:ButtonEditSettings NullValueButtonPlacement="EditBox" AllowDefaultButton="False"/>
@@ -41,6 +45,7 @@
                     <dxb:BarButtonItemLink BarItemName="BarButtonRemove"/>
                     <dxb:BarItemLinkSeparator />
                     <dxb:BarButtonItemLink BarItemName="BarButtonExport"/>
+                    <dxb:BarButtonItemLink BarItemName="BarButtonExport2"/>
                 </dxb:Bar>
                 <dxb:Bar x:Name="FilterBar" ShowDragWidget="False" UseWholeRow="True">
                     <dxb:Bar.DockInfo>
@@ -50,21 +55,22 @@
                 </dxb:Bar>
             </dxb:BarManager.Bars>
             <Grid Background="Transparent">
-                <dxg:GridControl HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ItemsSource="{Binding Data}" MouseDoubleClick="Control_OnMouseDoubleClick" SelectedItem="{Binding FocusedRow}">
+                <dxg:GridControl HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ItemsSource="{Binding Data}" MouseDoubleClick="Control_OnMouseDoubleClick" 
+                                 SelectedItem="{Binding FocusedRow}" Name="MainGrid">
                     <dxg:GridControl.Columns>
                         <dxg:GridColumn Header="Фамилия" FieldName="Surname" FixedWidth="True" Width="130" FilterPopupMode="CheckedList" SortOrder="Ascending"/>
                         <dxg:GridColumn Header="Имя" FieldName="Name" FixedWidth="True" Width="130" FilterPopupMode="CheckedList" SortOrder="Ascending"/>
                         <dxg:GridColumn Header="Отчество" FieldName="MiddleName" FixedWidth="True" Width="150" FilterPopupMode="CheckedList"/>
                         <dxg:GridColumn Header="Телефон" FieldName="ContactPhone" FixedWidth="True" Width="150" FilterPopupMode="CheckedList"/>
                         <dxg:GridColumn Header="Дата рождения" FieldName="BirthDate" FixedWidth="True" Width="150" FilterPopupMode="CheckedList"/>
+                        <dxg:GridColumn Header="Согласованная должность" FieldName="Position" FixedWidth="True" Width="170" FilterPopupMode="CheckedList">
+                            <dxg:GridColumn.EditSettings>
+                                <dxe:TextEditSettings TextWrapping="Wrap"/>
+                            </dxg:GridColumn.EditSettings>
+                        </dxg:GridColumn>
                     </dxg:GridControl.Columns>
                     <dxg:GridControl.View>
-                        <dxg:TableView x:Name="MainGridView" ShowTotalSummary="True" NavigationStyle="Row" AutoWidth="True" AllowEditing="False" ShowGroupPanel="False">
-                            <dxg:TableView.Resources>
-                                <dx:ColorToBrushConverter x:Key="ColorToBrushConverter"/>
-                                <dxdove:NotNullConverter x:Key="NotNullConverter"/>
-                            </dxg:TableView.Resources>
-                        </dxg:TableView>
+                        <dxg:TableView x:Name="MainGridView" ShowTotalSummary="True" NavigationStyle="Row" AutoWidth="True" AllowEditing="False" ShowGroupPanel="False"/>
                     </dxg:GridControl.View>
                 </dxg:GridControl>
             </Grid>
